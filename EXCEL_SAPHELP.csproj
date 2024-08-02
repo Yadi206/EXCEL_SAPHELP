@@ -17,13 +17,13 @@
     <TargetFrameworkProfile />
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>D:\20.CODING\NET\VSTO\EXCEL_SAPHELP\Setup\FABU\</PublishUrl>
+    <PublishUrl>D:\20.CODING\gitee\EXCEL_SAPHELP\安装打包\FABU\</PublishUrl>
     <InstallUrl />
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.0.7</ApplicationVersion>
+    <ApplicationVersion>1.0.0.10</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateInterval>7</UpdateInterval>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateInterval>0</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
     <ProductName>EXCEL_SAPHELP</ProductName>
     <PublisherName />
