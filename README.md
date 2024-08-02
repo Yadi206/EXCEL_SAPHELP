@@ -8,7 +8,7 @@ EXCEL VSTO开发的辅助工具,可以用来链接SAP调用RFC\
 3.在线读取表结构
 
  
-#### 安装教程
+#### 安装与使用
 https://www.yuque.com/tiger-fb9jj/zpgg4d/ftklu0ougixp8rsa?singleDoc \
 1.先安装.NET 4.6.2 ,这个是 调用RFC所必须的运行时;\
   要等6.2安装完成，再安装工具包\
@@ -18,7 +18,7 @@ https://www.yuque.com/tiger-fb9jj/zpgg4d/ftklu0ougixp8rsa?singleDoc \
 4.打开excel,会触发工具安装.\
 如果没启动,需要重启计算机
 
-#### 使用说明
+#### NCO下载( 可以不下载 )
 
 SAP NCO 官方网站\
 https://support.sap.com/en/product/connectors/msnet.html?anchorId=section_512604546 \
