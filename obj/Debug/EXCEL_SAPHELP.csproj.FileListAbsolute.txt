@@ -1,0 +1,6 @@
+D:\20.CODING\gitee\EXCEL_SAPHELP\obj\Debug\EXCEL_SAPHELP.csproj.AssemblyReference.cache
+D:\20.CODING\gitee\EXCEL_SAPHELP\obj\Debug\EXCEL_SAPHELP.EXCEL.SAPHelper.resources
+D:\20.CODING\gitee\EXCEL_SAPHELP\obj\Debug\EXCEL_SAPHELP.Properties.Resources.resources
+D:\20.CODING\gitee\EXCEL_SAPHELP\obj\Debug\CWaitForm.resources
+D:\20.CODING\gitee\EXCEL_SAPHELP\obj\Debug\EXCEL_SAPHELP.csproj.GenerateResource.cache
+D:\20.CODING\gitee\EXCEL_SAPHELP\obj\Debug\EXCEL_SAPHELP.csproj.CoreCompileInputs.cache
