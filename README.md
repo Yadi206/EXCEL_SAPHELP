@@ -7,36 +7,21 @@ EXCEL VSTO开发的辅助工具,可以用来链接SAP调用RFC
 2.离线读取表结构
 3.在线读取表结构
 
-
-#### 软件架构
-软件架构说明
-
-
+ 
 #### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+https://www.yuque.com/tiger-fb9jj/zpgg4d/ftklu0ougixp8rsa?singleDoc
+1.先安装.NET 4.6.2 ,这个是 调用RFC所必须的运行时;
+  要等6.2安装完成，再安装工具包
+2.再安装 VOST工具包,是运行excel扩展工具的运行时;
+安装完重启计算机
+3.再安装Excel_saphelp.
+4.打开excel,会触发工具安装.
+如果没启动,需要重启计算机
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+SAP NCO 官方网站
+https://support.sap.com/en/product/connectors/msnet.html?anchorId=section_512604546
+备份下载链接:
+通过百度网盘分享的文件：SAP NCO
+链接：https://pan.baidu.com/s/15sEqWPGhzyNNsI4cnVDLVw?pwd=i5z3
