@@ -6,17 +6,22 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using EXCEL_SAPHELP.Com;
 
 namespace EXCEL_SAPHELP
 {
     public partial class ThisAddIn
     {
+        KeyboardHook hook;
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            hook = new KeyboardHook();
+            hook.InitHook();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            hook.UnHook();
         }
 
         #region VSTO 生成的代码

@@ -227,6 +227,7 @@
   -->
   <ItemGroup>
     <Compile Include="Com\ExcelApp.cs" />
+    <Compile Include="Com\KeyboardHook.cs" />
     <Compile Include="Com\Model\BianLiang.cs" />
     <Compile Include="Com\Model\MiMa.cs" />
     <Compile Include="Com\Model\MiMaHang.cs" />
@@ -259,6 +260,12 @@
     <Compile Include="WinForm\CWaitForm.designer.cs">
       <DependentUpon>CWaitForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\frWriteTableName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\frWriteTableName.Designer.cs">
+      <DependentUpon>frWriteTableName.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\FullTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +291,12 @@
     </Compile>
     <EmbeddedResource Include="WinForm\CWaitForm.resx">
       <DependentUpon>CWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\frWriteTableName.resx">
+      <DependentUpon>frWriteTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FullTable.resx">
+      <DependentUpon>FullTable.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="EXCEL_SAPHELP_TemporaryKey.pfx" />

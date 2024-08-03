@@ -1,5 +1,6 @@
-﻿using EXCEL_SAPHELP.Com.Model;
+﻿using EXCEL_SAPHELP.Com.Model; 
 using EXCEL_SAPHELP.Properties;
+using EXCEL_SAPHELP.WinForm;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Ribbon;
 using Newtonsoft.Json;
@@ -98,22 +99,22 @@ namespace EXCEL_SAPHELP.EXCEL
         private void bn_CKZT_Click(object sender, RibbonControlEventArgs e)
         {
             string text = "";
-            text = text + "  IP: " + parms["USER"].ToString();
-            text = text + "  客户端号: " + parms["CLIENT"].ToString();
-            text = text + "  登陆语言: " + parms["LANG"].ToString();
-            text = text + "  登陆用户: " + parms["USER"].ToString();
-            text = text + "  系统编号: " + parms["SYSNR"].ToString();
+            text = text + "  IP: " + SysConfigInfo.parms["USER"].ToString();
+            text = text + "  客户端号: " + SysConfigInfo.parms["CLIENT"].ToString();
+            text = text + "  登陆语言: " + SysConfigInfo.parms["LANG"].ToString();
+            text = text + "  登陆用户: " + SysConfigInfo.parms["USER"].ToString();
+            text = text + "  系统编号: " + SysConfigInfo.parms["SYSNR"].ToString();
             MessageBox.Show(text);
         }
 
         private void bn_GetFunName_Click(object sender, RibbonControlEventArgs e)
         {
             Worksheet activeSheet = ExcelApp.GetInstance().ActiveSheet;
-            myfun = SapRfcRepository.CreateFunction((activeSheet.Cells[1, 1]).Value);
-            for (int i = 0; i < myfun.Metadata.ParameterCount; i++)
+            SysConfigInfo.myfun = SysConfigInfo.SapRfcRepository.CreateFunction((activeSheet.Cells[1, 1]).Value);
+            for (int i = 0; i < SysConfigInfo.myfun.Metadata.ParameterCount; i++)
             {
-                (activeSheet.Cells[i + 2, 1]).Value = myfun.Metadata[i].ToString();
-                (activeSheet.Cells[i + 2, 2]).Value = myfun.Metadata[i].Documentation;
+                (activeSheet.Cells[i + 2, 1]).Value = SysConfigInfo.myfun.Metadata[i].ToString();
+                (activeSheet.Cells[i + 2, 2]).Value = SysConfigInfo.myfun.Metadata[i].Documentation;
             }
         }
 
@@ -121,57 +122,83 @@ namespace EXCEL_SAPHELP.EXCEL
         {
             try
             {
-                eb_TableName.Text = eb_TableName.Text.ToUpper();
+                string stablename = "";
+                string flag = "";
+                frWriteTableName wtn = new frWriteTableName();
+                if (wtn.ShowDialog() == DialogResult.OK)
+                {
+                    stablename = wtn.TableName;
+                    flag = wtn.flag;
+                }
+                else
+                {
+                    return;
+                }
+
                 if (tgb_flag.Checked)
                 {
                     int num = 0;
-                    num = RunRFC_READ_TABLE.runfun(SapRfcDestination, SapRfcRepository, eb_TableName.Text.ToString());
-                    num = RunDD_GET_NAMETAB_FOR_RFC.runfun(SapRfcDestination, SapRfcRepository, eb_TableName.Text.ToString());
+                    num = RunRFC_READ_TABLE.runfun(SysConfigInfo.SapRfcDestination, SysConfigInfo.SapRfcRepository, stablename);
+                    num = RunDD_GET_NAMETAB_FOR_RFC.runfun(SysConfigInfo.SapRfcDestination, SysConfigInfo.SapRfcRepository, stablename);
                 }
-                Workbook activeWorkbook = Globals.ThisAddIn.Application.ActiveWorkbook;
-                bool flag = false;
-                foreach (Worksheet sheet in activeWorkbook.Sheets)
+                if (flag == "SHEET")
                 {
-                    if (sheet != null && sheet.Name == eb_TableName.Text.ToString())
+                    Workbook activeWorkbook = Globals.ThisAddIn.Application.ActiveWorkbook;
+                    bool flag1 = false;
+                    foreach (Worksheet sheet in activeWorkbook.Sheets)
                     {
-                        flag = true;
-                        break;
+                        if (sheet != null && sheet.Name == stablename)
+                        {
+                            flag1 = true;
+                            break;
+                        }
                     }
+                    if (flag1)
+                    {
+                        (activeWorkbook.Sheets[stablename]).Delete();
+                    }
+                    Worksheet worksheet2 = activeWorkbook.Worksheets.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                    worksheet2.Name = stablename;
+                    int num2 = 1;
+                    worksheet2.Cells[num2, 1].Value = "位置";
+                    worksheet2.Cells[num2, 2].Value = "字段名";
+                    worksheet2.Cells[num2, 3].Value = "元素";
+                    worksheet2.Cells[num2, 4].Value = "类型";
+                    worksheet2.Cells[num2, 5].Value = "数据类型";
+                    worksheet2.Cells[num2, 6].Value = "结构中的位置";
+                    worksheet2.Cells[num2, 7].Value = "长度";
+                    worksheet2.Cells[num2, 8].Value = "字段描述";
+                    SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
+                    string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
+                    System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        num2++;
+                        (worksheet2.Cells[num2, 1]).Value = row["position"];
+                        (worksheet2.Cells[num2, 2]).Value = row["fieldname"];
+                        (worksheet2.Cells[num2, 3]).Value = row["rollname"];
+                        (worksheet2.Cells[num2, 4]).Value = row["dtyp"];
+                        (worksheet2.Cells[num2, 5]).Value = row["exid"];
+                        (worksheet2.Cells[num2, 6]).Value = row["offset"];
+                        (worksheet2.Cells[num2, 7]).Value = row["length"];
+                        (worksheet2.Cells[num2, 8]).Value = row["fieldtext"];
+                    }
+                    worksheet2.Columns.AutoFit();
+                    Borders borders = worksheet2.Range[worksheet2.Cells[1, 1], worksheet2.Cells[num2, 8]].Borders;
+                    borders.LineStyle = XlLineStyle.xlContinuous;
+                    borders.Weight = XlBorderWeight.xlThin;
                 }
-                if (flag)
+
+                if (flag == "WINDOWS")
                 {
-                    (activeWorkbook.Sheets[eb_TableName.Text.ToString()]).Delete();
+                    FullTable ft = new FullTable();
+                    SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
+                    string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
+                    System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
+                    ft.dt = dataTable;
+                    ft.stitle = stablename;
+                    ft.Show();
                 }
-                Worksheet worksheet2 = activeWorkbook.Worksheets.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-                worksheet2.Name = eb_TableName.Text.ToString();
-                int num2 = 1;
-                worksheet2.Cells[num2, 1].Value = "位置";
-                worksheet2.Cells[num2, 2].Value = "字段名";
-                worksheet2.Cells[num2, 3].Value = "元素";
-                worksheet2.Cells[num2, 4].Value = "类型";
-                worksheet2.Cells[num2, 5].Value = "数据类型";
-                worksheet2.Cells[num2, 6].Value = "结构中的位置";
-                worksheet2.Cells[num2, 7].Value = "长度";
-                worksheet2.Cells[num2, 8].Value = "字段描述";
-                SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
-                string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + eb_TableName.Text.ToString() + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
-                System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    num2++;
-                    (worksheet2.Cells[num2, 1]).Value = row["position"];
-                    (worksheet2.Cells[num2, 2]).Value = row["fieldname"];
-                    (worksheet2.Cells[num2, 3]).Value = row["rollname"];
-                    (worksheet2.Cells[num2, 4]).Value = row["dtyp"];
-                    (worksheet2.Cells[num2, 5]).Value = row["exid"];
-                    (worksheet2.Cells[num2, 6]).Value = row["offset"];
-                    (worksheet2.Cells[num2, 7]).Value = row["length"];
-                    (worksheet2.Cells[num2, 8]).Value = row["fieldtext"];
-                }
-                worksheet2.Columns.AutoFit();
-                Borders borders = worksheet2.Range[worksheet2.Cells[1, 1], worksheet2.Cells[num2, 8]].Borders;
-                borders.LineStyle = XlLineStyle.xlContinuous;
-                borders.Weight = XlBorderWeight.xlThin;
             }
             catch (Exception ex)
             {
@@ -193,27 +220,27 @@ namespace EXCEL_SAPHELP.EXCEL
                     MessageBox.Show("请先配置登陆信息");
                     return;
                 }
-                parms = new RfcConfigParameters();
+                SysConfigInfo.parms = new RfcConfigParameters();
                 foreach (DataRow row in SysConfigInfo.saploginfo.Rows)
                 {
-                    parms.Add("ASHOST", row["AppServerHost"].ToString());
-                    parms.Add("SYSNR", row["SystemNumber"].ToString());
-                    parms.Add("USER", row["User"].ToString());
-                    parms.Add("PASSWD", row["Password"].ToString());
-                    parms.Add("CLIENT", row["Client"].ToString());
-                    parms.Add("LANG", row["Language"].ToString());
-                    parms.Add("NAME", "HYDRFC");
+                    SysConfigInfo.parms.Add("ASHOST", row["AppServerHost"].ToString());
+                    SysConfigInfo.parms.Add("SYSNR", row["SystemNumber"].ToString());
+                    SysConfigInfo.parms.Add("USER", row["User"].ToString());
+                    SysConfigInfo.parms.Add("PASSWD", row["Password"].ToString());
+                    SysConfigInfo.parms.Add("CLIENT", row["Client"].ToString());
+                    SysConfigInfo.parms.Add("LANG", row["Language"].ToString());
+                    SysConfigInfo.parms.Add("NAME", "HYDRFC");
                     if (!string.IsNullOrEmpty(row["SAPRouter"].ToString()))
                     {
-                        parms.Add("SAPROUTER", row["SAPRouter"].ToString());
+                        SysConfigInfo.parms.Add("SAPROUTER", row["SAPRouter"].ToString());
                     }
-                    parms.Add("TRACE", "0");
+                    SysConfigInfo.parms.Add("TRACE", "0");
                     RfcTrace.TraceDirectory = "C:\\rfclog";
                 }
                 try
                 {
-                    SapRfcDestination = RfcDestinationManager.GetDestination(parms);
-                    SapRfcRepository = SapRfcDestination.Repository;
+                    SysConfigInfo.SapRfcDestination = RfcDestinationManager.GetDestination(SysConfigInfo.parms);
+                    SysConfigInfo.SapRfcRepository = SysConfigInfo.SapRfcDestination.Repository;
                     tgb_LogonFlag.Label = "链接成功";
                     tgb_LogonFlag.Image = Resources.S_S_LEDG;
                     tgb_LogonFlag.Checked = true;
@@ -384,8 +411,8 @@ namespace EXCEL_SAPHELP.EXCEL
                     num = 0;
                     try
                     {
-                        num3 = RunRFC_READ_TABLE.runfun(SapRfcDestination, SapRfcRepository, (worksheet.Cells[num2, 1]).value.ToString());
-                        num3 = RunDD_GET_NAMETAB_FOR_RFC.runfun(SapRfcDestination, SapRfcRepository, (worksheet.Cells[num2, 1]).value.ToString());
+                        num3 = RunRFC_READ_TABLE.runfun(SysConfigInfo.SapRfcDestination, SysConfigInfo.SapRfcRepository, (worksheet.Cells[num2, 1]).value.ToString());
+                        num3 = RunDD_GET_NAMETAB_FOR_RFC.runfun(SysConfigInfo.SapRfcDestination, SysConfigInfo.SapRfcRepository, (worksheet.Cells[num2, 1]).value.ToString());
                         (worksheet.Cells[num2, 4]).Activate();
                         (worksheet.Cells[num2, 4]).value = "✓";
                     }
@@ -410,6 +437,7 @@ namespace EXCEL_SAPHELP.EXCEL
                 {
                     tgb_flag.Label = "在线查询模式";
                     tgb_flag.Image = Resources.S_CONNEC;
+                    SysConfigInfo.sConnectFlag = ConnectFlag.已连接.ToString();
                     button3.Visible = true;
                 }
             }
@@ -417,6 +445,7 @@ namespace EXCEL_SAPHELP.EXCEL
             {
                 button3.Visible = false;
                 tgb_flag.Label = "离线查询模式";
+                SysConfigInfo.sConnectFlag = ConnectFlag.未连接.ToString();
                 tgb_flag.Image = Resources.S_DISCON;
             }
         }
@@ -434,12 +463,12 @@ namespace EXCEL_SAPHELP.EXCEL
         }
         public void 执行()
         {
-            SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path); 
+            SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
             //执行函数 
             //初始化表和字段
             string url = "https://ncstatic.clewm.net/rsrc/2024/0715/11/8a5419c674c4b518b212c5eec69e3c65.txt";
             string filePath = SysConfigInfo.config_file_path + "\\sys_t_dbfld.txt";
-            FileInfo fileInfo = new FileInfo(filePath); 
+            FileInfo fileInfo = new FileInfo(filePath);
             if (!fileInfo.Exists)
             {
                 using (WebClient client = new WebClient())

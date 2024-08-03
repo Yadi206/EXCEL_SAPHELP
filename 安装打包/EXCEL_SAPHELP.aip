@@ -34,10 +34,10 @@
     <ROW Property="ARPCONTACT" Value="Tiger Hu"/>
     <ROW Property="ARPURLINFOABOUT" Value="https://www.yuque.com/tiger-fb9jj/zpgg4d/ftklu0ougixp8rsa?singleDoc# 《Excel Saphelper》"/>
     <ROW Property="Manufacturer" Value="TIGER"/>
-    <ROW Property="ProductCode" Value="2052:{F52EDA9A-A545-4CA3-82A4-6CD55F7168F8} " Type="16"/>
+    <ROW Property="ProductCode" Value="2052:{CD27B787-D474-4A7F-B47C-7E30ED2CAF7F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="EXCEL_SAPHELP"/>
-    <ROW Property="ProductVersion" Value="1.1.4" Options="32"/>
+    <ROW Property="ProductVersion" Value="1.1.7" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{FFB0CDAB-1EB7-42DF-9E76-B1AF9BDE8A16}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

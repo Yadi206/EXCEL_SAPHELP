@@ -56,7 +56,6 @@ namespace EXCEL_SAPHELP.EXCEL
             this.button1 = this.Factory.CreateRibbonButton();
             this.button3 = this.Factory.CreateRibbonButton();
             this.box5 = this.Factory.CreateRibbonBox();
-            this.eb_TableName = this.Factory.CreateRibbonEditBox();
             this.bn_ReadTableS = this.Factory.CreateRibbonButton();
             this.tab_SAPHelper.SuspendLayout();
             this.group2.SuspendLayout();
@@ -192,21 +191,15 @@ namespace EXCEL_SAPHELP.EXCEL
             // 
             // box5
             // 
-            this.box5.Items.Add(this.eb_TableName);
             this.box5.Items.Add(this.bn_ReadTableS);
             this.box5.Name = "box5";
             // 
-            // eb_TableName
-            // 
-            this.eb_TableName.Label = "表名：";
-            this.eb_TableName.Name = "eb_TableName";
-            this.eb_TableName.SizeString = "01234567890123456789";
-            this.eb_TableName.Text = null;
-            // 
             // bn_ReadTableS
             // 
-            this.bn_ReadTableS.Label = "读取表结构";
+            this.bn_ReadTableS.Image = global::EXCEL_SAPHELP.Properties.Resources.S_B_BOYE;
+            this.bn_ReadTableS.Label = "读取表结构(ALT+5)";
             this.bn_ReadTableS.Name = "bn_ReadTableS";
+            this.bn_ReadTableS.ShowImage = true;
             this.bn_ReadTableS.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bn_ReadTableS_Click);
             // 
             // SAPHelper
@@ -235,13 +228,7 @@ namespace EXCEL_SAPHELP.EXCEL
 
         #endregion
 
-        private RfcDestination SapRfcDestination;
 
-        private RfcRepository SapRfcRepository;
-
-        private IRfcFunction myfun;
-
-        public RfcConfigParameters parms = new RfcConfigParameters();
          
 
         internal RibbonTab tab_SAPHelper;
@@ -255,8 +242,6 @@ namespace EXCEL_SAPHELP.EXCEL
         internal RibbonGroup group1;
 
         internal RibbonBox box2;
-
-        internal RibbonEditBox eb_TableName;
 
         internal RibbonButton bn_ReadTableS;
 
