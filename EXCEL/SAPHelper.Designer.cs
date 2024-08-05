@@ -197,7 +197,7 @@ namespace EXCEL_SAPHELP.EXCEL
             // bn_ReadTableS
             // 
             this.bn_ReadTableS.Image = global::EXCEL_SAPHELP.Properties.Resources.S_B_BOYE;
-            this.bn_ReadTableS.Label = "读取表结构(ALT+5)";
+            this.bn_ReadTableS.Label = "读取表结构(CTRL + Q)";
             this.bn_ReadTableS.Name = "bn_ReadTableS";
             this.bn_ReadTableS.ShowImage = true;
             this.bn_ReadTableS.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bn_ReadTableS_Click);

@@ -196,14 +196,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EXCEL_SAPHELP.dll" size="3186688">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EXCEL_SAPHELP.dll" size="3187200">
       <assemblyIdentity name="EXCEL_SAPHELP" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rlnTKKOctJIvjykw26Yr2/SlfRrwAgYsDir1aQvZHVw=</dsig:DigestValue>
+        <dsig:DigestValue>/8nIEia2Eb0JoVToWp1+zpRpSX9lG2a3elmqIIvfQRY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -232,26 +232,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="sapnco.dll" size="730672">
-      <assemblyIdentity name="sapnco" version="3.1.0.42" publicKeyToken="50436DCA5C7F7D23" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="sapnco.dll" size="730160">
+      <assemblyIdentity name="sapnco" version="3.1.0.42" publicKeyToken="50436DCA5C7F7D23" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6n15SYz2+ni+mtOT7OFkcrtKbI3VvvL4/MuEAx44bTA=</dsig:DigestValue>
+        <dsig:DigestValue>qfnvCreM4HSm9LQs/Nz4u6YQdKe0jAGy/ymVEEazr08=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="sapnco_utils.dll" size="6047792">
-      <assemblyIdentity name="sapnco_utils" version="3.1.0.42" publicKeyToken="50436DCA5C7F7D23" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="sapnco_utils.dll" size="7307312">
+      <assemblyIdentity name="sapnco_utils" version="3.1.0.42" publicKeyToken="50436DCA5C7F7D23" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OUYfzMP/30sMGtiXmIa8Ha5LuetLxZNI4yoGmUK2uk4=</dsig:DigestValue>
+        <dsig:DigestValue>muxQfIjBwY1p39uyk0DbqZoqenArS6MeGSHoNbcaFHI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -323,4 +323,4 @@
       </vstov4:customizations>
     </vstav3:application>
   </vstav3:addIn>
-<publisherIdentity name="CN=YADI-JXGM\Administrator" issuerKeyHash="adc0fc513225ec6a23e277bbafb8f6477750b004" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>4b4hWDQL1Hh2f2+yvRgb5FP6OkQtt6RZ4E1pI/+vp3Q=</DigestValue></Reference></SignedInfo><SignatureValue>qNi0JRFBxf4fydSBcFnENrNcBVhTzDR8Y+OUYl0FauQQrXzfjeY0NHyvjA7xcANPiFe4OeMLFpVhqeee1DxTP17/yZqc2bVy/Ndv2C7Kp0vhFlTqIfErBgwBL8wXxbrXLSj9Wy3h+TSXV0aqj+2mC/r453i00B4IrYELKz84tz8=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>wUJStrXbj9AAtvulLR0X+PgZHQY8Btuo8dxicfAej8X21EaQ/DOIjFh4bIhMsM4WGLyZbHDJlpbvMtkSP66mGCiE8oD7uFMq2I7vGrbFkl7Kg6Z7XFdr05u35vvQfofzPEob37MVwJWMNCXruxKYUgalq2Ih73bCIb8e0VxX1Fk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="74a7afff23694de059a4b72d443afa53e41b18bdb26f7f7678d40b345821bee1" Description="" Url=""><as:assemblyIdentity name="EXCEL_SAPHELP.dll" version="1.0.0.10" publicKeyToken="41af1cb22dd23fb5" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=YADI-JXGM\Administrator</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>3AhNJ0fnQNbtJfndgesZiKdg8DnYTfRd4+L6u0I0s0I=</DigestValue></Reference></SignedInfo><SignatureValue>hq0dk3H43Ndfpu5RIH7ZA3gSMOehFstPm5i33E67rBUoutGxyckC97mj9S4HU0VGm1zM2MMsm5Ro0SYGElBd8wTxgVMrbs+vYr/rD27hRkjyL5ndbqZEhAE9AO2AGnnOpJcKW66589pcHUxb+2l2HDTOijMBSGFjsuLmeu9r80A=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>wUJStrXbj9AAtvulLR0X+PgZHQY8Btuo8dxicfAej8X21EaQ/DOIjFh4bIhMsM4WGLyZbHDJlpbvMtkSP66mGCiE8oD7uFMq2I7vGrbFkl7Kg6Z7XFdr05u35vvQfofzPEob37MVwJWMNCXruxKYUgalq2Ih73bCIb8e0VxX1Fk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAV6gAwIBAgIQGRtgpE8iG7BIXVXoDs+6kTANBgkqhkiG9w0BAQsFADA5MTcwNQYDVQQDHi4AWQBBAEQASQAtAEoAWABHAE0AXABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByMB4XDTI0MDgwMjAxNDU0NloXDTI1MDgwMjA3NDU0NlowOTE3MDUGA1UEAx4uAFkAQQBEAEkALQBKAFgARwBNAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUJStrXbj9AAtvulLR0X+PgZHQY8Btuo8dxicfAej8X21EaQ/DOIjFh4bIhMsM4WGLyZbHDJlpbvMtkSP66mGCiE8oD7uFMq2I7vGrbFkl7Kg6Z7XFdr05u35vvQfofzPEob37MVwJWMNCXruxKYUgalq2Ih73bCIb8e0VxX1FkCAwEAATANBgkqhkiG9w0BAQsFAAOBgQAg+G8DkAh75tZDqXGsppTBkXNWoWnlVavtRlRnFfbssP9TnIs4qQfw0mrM0n7VNaviczzvlpFYxBqUwPxhmrtkx3JkHDfZwsPUdS3XuIn/QTyBkcXR1/CyJAELZNq340RTQyftQz5C3VZCCEBSifOSVn41peqp7ikZZqCjNueuSg==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
+<publisherIdentity name="CN=YADI-JXGM\Administrator" issuerKeyHash="adc0fc513225ec6a23e277bbafb8f6477750b004" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>zss8lydl62ClOvaN3+3e5OCbzHVDfhhUQfkrMRQeOeo=</DigestValue></Reference></SignedInfo><SignatureValue>n9n6yxx8NiPijSZv0RwqTXwCr7V9kvgpQHLiRaXb/unH03evuBWOokano1hPfiXoMyg75jyD0yenRxxV1edtXr3J6FtdLjk77wkq3qPA4bS3rx4PoEOm/KgZGE71Qdjjtex0kWJas3waCyJiJNqwmx2AU6Dz/Ya/q1WWBG/JnxM=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>wUJStrXbj9AAtvulLR0X+PgZHQY8Btuo8dxicfAej8X21EaQ/DOIjFh4bIhMsM4WGLyZbHDJlpbvMtkSP66mGCiE8oD7uFMq2I7vGrbFkl7Kg6Z7XFdr05u35vvQfofzPEob37MVwJWMNCXruxKYUgalq2Ih73bCIb8e0VxX1Fk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="ea391e14312bf94154187e4375cc9be0e4deeddf8df63aa560eb6527973ccbce" Description="" Url=""><as:assemblyIdentity name="EXCEL_SAPHELP.dll" version="1.0.0.10" publicKeyToken="41af1cb22dd23fb5" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=YADI-JXGM\Administrator</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>67gwM6Ic10dWBj4o3YPL+/yC8+K5sTzu8AzkvMScnts=</DigestValue></Reference></SignedInfo><SignatureValue>X53OzHGhBBfXnIMQccF4ntFdtQ0UV3Ar5PppxBdrsItyAUzksV3kmnJ6eeGQTIIPRIf5iQ/xSgdjt6MTocg/oCTuqCWO/U8P/krYs1xfC2AFtG2FKL/ZVZ9YPi0xyjmX03RdakY7P58znIC0zT4v/VsHljqq9qmtRDMz19LyUiI=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>wUJStrXbj9AAtvulLR0X+PgZHQY8Btuo8dxicfAej8X21EaQ/DOIjFh4bIhMsM4WGLyZbHDJlpbvMtkSP66mGCiE8oD7uFMq2I7vGrbFkl7Kg6Z7XFdr05u35vvQfofzPEob37MVwJWMNCXruxKYUgalq2Ih73bCIb8e0VxX1Fk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAV6gAwIBAgIQGRtgpE8iG7BIXVXoDs+6kTANBgkqhkiG9w0BAQsFADA5MTcwNQYDVQQDHi4AWQBBAEQASQAtAEoAWABHAE0AXABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByMB4XDTI0MDgwMjAxNDU0NloXDTI1MDgwMjA3NDU0NlowOTE3MDUGA1UEAx4uAFkAQQBEAEkALQBKAFgARwBNAFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUJStrXbj9AAtvulLR0X+PgZHQY8Btuo8dxicfAej8X21EaQ/DOIjFh4bIhMsM4WGLyZbHDJlpbvMtkSP66mGCiE8oD7uFMq2I7vGrbFkl7Kg6Z7XFdr05u35vvQfofzPEob37MVwJWMNCXruxKYUgalq2Ih73bCIb8e0VxX1FkCAwEAATANBgkqhkiG9w0BAQsFAAOBgQAg+G8DkAh75tZDqXGsppTBkXNWoWnlVavtRlRnFfbssP9TnIs4qQfw0mrM0n7VNaviczzvlpFYxBqUwPxhmrtkx3JkHDfZwsPUdS3XuIn/QTyBkcXR1/CyJAELZNq340RTQyftQz5C3VZCCEBSifOSVn41peqp7ikZZqCjNueuSg==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

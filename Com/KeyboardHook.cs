@@ -60,7 +60,7 @@ namespace EXCEL_SAPHELP.Com
                     return CallNextHookEx(khook, code, wParam, lParam);
                 }
 
-                if ((int)wParam == (int)Keys.D5 && ((int)lParam & (int)Keys.Alt ) != 0)
+                if ((int)wParam == (int)Keys.Q && ((int)lParam  == 1048577))
                 {
                     if (!doing)
                     {
@@ -116,7 +116,7 @@ namespace EXCEL_SAPHELP.Com
                                 worksheet2.Cells[num2, 7].Value = "长度";
                                 worksheet2.Cells[num2, 8].Value = "字段描述";
                                 SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
-                                string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
+                                string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,'" + stablename + "-' || sys_t_x031l.fieldname as field, sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
                                 System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
                                 foreach (DataRow row in dataTable.Rows)
                                 {
@@ -139,7 +139,7 @@ namespace EXCEL_SAPHELP.Com
                             {
                                 FullTable ft = new FullTable(); 
                                 SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
-                                string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
+                                string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,'" + stablename + "-' || sys_t_x031l.fieldname as field,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
                                 System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
                                 ft.dt = dataTable;
                                 ft.stitle = stablename;
