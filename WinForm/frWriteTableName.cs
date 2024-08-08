@@ -55,6 +55,17 @@ namespace EXCEL_SAPHELP.WinForm
             this.DialogResult = DialogResult.OK;
         }
 
-
+        private void bn_FindTable_Click(object sender, EventArgs e)
+        {
+            FindTable ft = new FindTable();
+            if (ft.ShowDialog() == DialogResult.OK)
+            {
+                tb_TableName.Text = ft.chosetablename;
+            }
+            else
+            {
+                tb_TableName.Focus();
+            }
+        }
     }
 }

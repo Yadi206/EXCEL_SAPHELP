@@ -23,6 +23,7 @@ public class FullTable : Form
     int currentrow = 0;
     int currentcolumn = 0;
     private ToolStripMenuItem 标记全部ToolStripMenuItem1;
+    private ToolStripMenuItem tlsp_YXXX;
     string currentfindvalue = "";
 
 
@@ -85,6 +86,7 @@ public class FullTable : Form
             this.tstb_FindValue = new System.Windows.Forms.ToolStripTextBox();
             this.查找ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.标记全部ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlsp_YXXX = new System.Windows.Forms.ToolStripMenuItem();
             this.cDataGridView1 = new CDataGridView();
             this.ms_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cDataGridView1)).BeginInit();
@@ -96,10 +98,11 @@ public class FullTable : Form
             this.tsb_Top,
             this.tstb_FindValue,
             this.查找ToolStripMenuItem,
-            this.标记全部ToolStripMenuItem1});
+            this.标记全部ToolStripMenuItem1,
+            this.tlsp_YXXX});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
-            this.ms_menu.Size = new System.Drawing.Size(818, 27);
+            this.ms_menu.Size = new System.Drawing.Size(1042, 27);
             this.ms_menu.TabIndex = 1;
             this.ms_menu.Text = "menuStrip1";
             // 
@@ -115,6 +118,7 @@ public class FullTable : Form
             this.tstb_FindValue.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.tstb_FindValue.Name = "tstb_FindValue";
             this.tstb_FindValue.Size = new System.Drawing.Size(100, 23);
+            this.tstb_FindValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstb_FindValue_KeyPress);
             // 
             // 查找ToolStripMenuItem
             // 
@@ -130,6 +134,13 @@ public class FullTable : Form
             this.标记全部ToolStripMenuItem1.Text = "标记全部";
             this.标记全部ToolStripMenuItem1.Click += new System.EventHandler(this.标记全部ToolStripMenuItem1_Click);
             // 
+            // tlsp_YXXX
+            // 
+            this.tlsp_YXXX.Name = "tlsp_YXXX";
+            this.tlsp_YXXX.Size = new System.Drawing.Size(184, 23);
+            this.tlsp_YXXX.Text = "自动转大写(点击切换允许小写)";
+            this.tlsp_YXXX.Click += new System.EventHandler(this.tlsp_YXXX_Click);
+            // 
             // cDataGridView1
             // 
             this.cDataGridView1.AllowUserToAddRows = false;
@@ -144,13 +155,14 @@ public class FullTable : Form
             this.cDataGridView1.Name = "cDataGridView1";
             this.cDataGridView1.PrimaryRowcolor1 = System.Drawing.Color.White;
             this.cDataGridView1.PrimaryRowcolor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(232)))));
+            this.cDataGridView1.ReadOnly = true;
             this.cDataGridView1.RowTemplate.Height = 23;
             this.cDataGridView1.SecondaryLength = 2;
             this.cDataGridView1.SecondaryRowColor1 = System.Drawing.Color.White;
             this.cDataGridView1.SecondaryRowColor2 = System.Drawing.Color.White;
             this.cDataGridView1.SelectedRowColor1 = System.Drawing.Color.White;
             this.cDataGridView1.SelectedRowColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(217)))), ((int)(((byte)(254)))));
-            this.cDataGridView1.Size = new System.Drawing.Size(818, 330);
+            this.cDataGridView1.Size = new System.Drawing.Size(1042, 330);
             this.cDataGridView1.TabIndex = 0;
             this.cDataGridView1.ButtonSelectClick += new CDataGridView.ButtonClick(this.cDataGridView1_ButtonSelectClick);
             // 
@@ -158,7 +170,7 @@ public class FullTable : Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 357);
+            this.ClientSize = new System.Drawing.Size(1042, 357);
             this.Controls.Add(this.cDataGridView1);
             this.Controls.Add(this.ms_menu);
             this.KeyPreview = true;
@@ -197,7 +209,7 @@ public class FullTable : Form
         if (e.Modifiers == Keys.Control && e.KeyCode == Keys.G)
         {
             查找ToolStripMenuItem_Click(null,null);
-        }
+        } 
         if (e.KeyCode == Keys.Escape)
         {
             this.Close();
@@ -208,10 +220,22 @@ public class FullTable : Form
     {
         if (string.IsNullOrEmpty(tstb_FindValue.Text))
         {
-            MessageBox.Show("输入要查找的值");
+            if (tstb_FindValue.Focused == false)
+            {
+                tstb_FindValue.Focus(); 
+            }
+            else
+            {
+                MessageBox.Show("输入要查找的值"); 
+            }
             return;
         }
         DataTable rentTable = (DataTable)cDataGridView1.DataSource;//获取数据源
+
+        if (tlsp_YXXX.Text == "自动转大写(点击切换允许小写)")
+        {
+            tstb_FindValue.Text = tstb_FindValue.Text.ToUpper();     
+        } 
         string sfindvalue = tstb_FindValue.Text.Trim();
         if (currentfindvalue != sfindvalue)
         {
@@ -246,6 +270,7 @@ public class FullTable : Form
             }
             currentcolumn = 0;
         }
+        MessageBox.Show("未发现更多数据,已全部搜索完成");
     }
       
     private void 标记全部ToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -271,5 +296,24 @@ public class FullTable : Form
         }
 
     }
- 
+
+    private void tstb_FindValue_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar == 13)
+        {
+            查找ToolStripMenuItem_Click(null,null); 
+        }
+    }
+
+    private void tlsp_YXXX_Click(object sender, EventArgs e)
+    {
+        if (tlsp_YXXX.Text == "允许小写(点击切换自动转大写)")
+        {
+            tlsp_YXXX.Text = "自动转大写(点击切换允许小写)";
+        }
+        if (tlsp_YXXX.Text == "自动转大写(点击切换允许小写)")
+        {
+            tlsp_YXXX.Text = "允许小写(点击切换自动转大写)";
+        }
+    }
 }

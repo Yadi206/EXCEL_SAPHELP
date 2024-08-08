@@ -34,12 +34,13 @@
             this.rbWindows = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.bn_FindTable = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 22);
+            this.label1.Location = new System.Drawing.Point(13, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
@@ -47,7 +48,7 @@
             // 
             // tb_TableName
             // 
-            this.tb_TableName.Location = new System.Drawing.Point(55, 22);
+            this.tb_TableName.Location = new System.Drawing.Point(55, 23);
             this.tb_TableName.Name = "tb_TableName";
             this.tb_TableName.Size = new System.Drawing.Size(152, 21);
             this.tb_TableName.TabIndex = 0;
@@ -56,7 +57,7 @@
             // rb_Sheet
             // 
             this.rb_Sheet.AutoSize = true;
-            this.rb_Sheet.Location = new System.Drawing.Point(15, 56);
+            this.rb_Sheet.Location = new System.Drawing.Point(15, 67);
             this.rb_Sheet.Name = "rb_Sheet";
             this.rb_Sheet.Size = new System.Drawing.Size(101, 16);
             this.rb_Sheet.TabIndex = 1;
@@ -67,7 +68,7 @@
             // 
             this.rbWindows.AutoSize = true;
             this.rbWindows.Checked = true;
-            this.rbWindows.Location = new System.Drawing.Point(122, 56);
+            this.rbWindows.Location = new System.Drawing.Point(15, 89);
             this.rbWindows.Name = "rbWindows";
             this.rbWindows.Size = new System.Drawing.Size(95, 16);
             this.rbWindows.TabIndex = 2;
@@ -78,7 +79,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(55, 144);
+            this.button1.Location = new System.Drawing.Point(94, 144);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -89,7 +90,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(144, 144);
+            this.button2.Location = new System.Drawing.Point(183, 144);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
@@ -97,12 +98,23 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // bn_FindTable
+            // 
+            this.bn_FindTable.Location = new System.Drawing.Point(213, 22);
+            this.bn_FindTable.Name = "bn_FindTable";
+            this.bn_FindTable.Size = new System.Drawing.Size(52, 23);
+            this.bn_FindTable.TabIndex = 5;
+            this.bn_FindTable.Text = "查找";
+            this.bn_FindTable.UseVisualStyleBackColor = true;
+            this.bn_FindTable.Click += new System.EventHandler(this.bn_FindTable_Click);
+            // 
             // frWriteTableName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(231, 179);
+            this.ClientSize = new System.Drawing.Size(270, 179);
             this.ControlBox = false;
+            this.Controls.Add(this.bn_FindTable);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.rbWindows);
@@ -126,5 +138,6 @@
         private System.Windows.Forms.RadioButton rbWindows;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button bn_FindTable;
     }
 }

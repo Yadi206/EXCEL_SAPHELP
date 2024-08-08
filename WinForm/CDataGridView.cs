@@ -267,7 +267,8 @@ public class CDataGridView : DataGridView
 		try
 		{
 			WTiaoJianChuangKou wTiaoJianChuangKou = new WTiaoJianChuangKou(this);
-			if (wTiaoJianChuangKou.ShowDialog() != DialogResult.OK)
+            wTiaoJianChuangKou.TopMost = true;
+            if (wTiaoJianChuangKou.ShowDialog() != DialogResult.OK)
 			{
 				return;
 			}

@@ -124,11 +124,11 @@
     </Reference>
     <Reference Include="sapnco, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_64\sapnco\v4.0_3.1.0.42__50436dca5c7f7d23\sapnco.dll</HintPath>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\sapnco\v4.0_3.1.0.42__50436dca5c7f7d23\sapnco.dll</HintPath>
     </Reference>
     <Reference Include="sapnco_utils, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_64\sapnco_utils\v4.0_3.1.0.42__50436dca5c7f7d23\sapnco_utils.dll</HintPath>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\sapnco_utils\v4.0_3.1.0.42__50436dca5c7f7d23\sapnco_utils.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -227,7 +227,11 @@
   -->
   <ItemGroup>
     <Compile Include="Com\ExcelApp.cs" />
+    <Compile Include="Com\Hook.cs" />
+    <Compile Include="Com\HookHelper.cs" />
+    <Compile Include="Com\KeyboardHook2.cs" />
     <Compile Include="Com\KeyboardHook.cs" />
+    <Compile Include="Com\KeyHook.cs" />
     <Compile Include="Com\Model\BianLiang.cs" />
     <Compile Include="Com\Model\MiMa.cs" />
     <Compile Include="Com\Model\MiMaHang.cs" />
@@ -239,8 +243,10 @@
     <Compile Include="Com\Model\SAPUILandscape.cs" />
     <Compile Include="Com\Model\sys_t_object.cs" />
     <Compile Include="Com\Model\sys_t_tablelist.cs" />
+    <Compile Include="Com\MouseHook.cs" />
     <Compile Include="Com\SQLiteDBHelper.cs" />
     <Compile Include="Com\SysConfigInfo.cs" />
+    <Compile Include="Com\Win32API.cs" />
     <Compile Include="EXCEL\SAPHelper.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -265,6 +271,9 @@
     </Compile>
     <Compile Include="WinForm\frWriteTableName.Designer.cs">
       <DependentUpon>frWriteTableName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\FindTable.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinForm\FullTable.cs">
       <SubType>Form</SubType>
@@ -294,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\frWriteTableName.resx">
       <DependentUpon>frWriteTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FindTable.resx">
+      <DependentUpon>FindTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FullTable.resx">
       <DependentUpon>FullTable.cs</DependentUpon>

@@ -154,7 +154,7 @@ namespace EXCEL_SAPHELP.EXCEL
             // tgb_flag
             // 
             this.tgb_flag.Image = global::EXCEL_SAPHELP.Properties.Resources.S_DISCON;
-            this.tgb_flag.Label = "离线查询模式";
+            this.tgb_flag.Label = "离线查询模式(点击切换为在线模式)";
             this.tgb_flag.Name = "tgb_flag";
             this.tgb_flag.ShowImage = true;
             this.tgb_flag.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.tgb_flag_Click);

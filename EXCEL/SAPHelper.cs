@@ -9,12 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Security.Policy;
+using System.IO; 
+using System.Net; 
 using System.Text;
 using System.Windows.Forms;
 namespace EXCEL_SAPHELP.EXCEL
@@ -436,7 +432,7 @@ namespace EXCEL_SAPHELP.EXCEL
                 bn_Login_Click(null, null);
                 if (tgb_LogonFlag.Checked)
                 {
-                    tgb_flag.Label = "在线查询模式";
+                    tgb_flag.Label = "在线查询模式(点击切换为离线查询模式)";
                     tgb_flag.Image = Resources.S_CONNEC;
                     SysConfigInfo.sConnectFlag = ConnectFlag.已连接.ToString();
                     button3.Visible = true;
@@ -445,7 +441,7 @@ namespace EXCEL_SAPHELP.EXCEL
             else
             {
                 button3.Visible = false;
-                tgb_flag.Label = "离线查询模式";
+                tgb_flag.Label = "离线查询模式(点击切换为在线查询模式)";
                 SysConfigInfo.sConnectFlag = ConnectFlag.未连接.ToString();
                 tgb_flag.Image = Resources.S_DISCON;
             }

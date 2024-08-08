@@ -7,23 +7,25 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using EXCEL_SAPHELP.Com;
+using System.Windows.Forms;
 
 namespace EXCEL_SAPHELP
 {
     public partial class ThisAddIn
     {
-        KeyboardHook hook;
+        KeyboardHook keyboardHook = new KeyboardHook();
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            hook = new KeyboardHook();
-            hook.InitHook();
+            //keyboardHook.InitHook();  //绑定钩子 
+
+            //hook = new KeyboardHook();
+            //hook.InitHook();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
-            hook.UnHook();
-        }
-
+            //keyboardHook.UnHook();  //拆卸钩子 
+        } 
         #region VSTO 生成的代码
 
         /// <summary>
@@ -35,7 +37,7 @@ namespace EXCEL_SAPHELP
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
         }
-        
+
         #endregion
     }
 }
