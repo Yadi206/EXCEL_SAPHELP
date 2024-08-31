@@ -71,7 +71,7 @@
             this.rbWindows.Location = new System.Drawing.Point(15, 89);
             this.rbWindows.Name = "rbWindows";
             this.rbWindows.Size = new System.Drawing.Size(95, 16);
-            this.rbWindows.TabIndex = 2;
+            this.rbWindows.TabIndex = 5;
             this.rbWindows.TabStop = true;
             this.rbWindows.Text = "独立窗口展示";
             this.rbWindows.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             this.bn_FindTable.Location = new System.Drawing.Point(213, 22);
             this.bn_FindTable.Name = "bn_FindTable";
             this.bn_FindTable.Size = new System.Drawing.Size(52, 23);
-            this.bn_FindTable.TabIndex = 5;
+            this.bn_FindTable.TabIndex = 2;
             this.bn_FindTable.Text = "查找";
             this.bn_FindTable.UseVisualStyleBackColor = true;
             this.bn_FindTable.Click += new System.EventHandler(this.bn_FindTable_Click);

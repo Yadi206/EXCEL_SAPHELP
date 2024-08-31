@@ -1,4 +1,4 @@
-﻿using EXCEL_SAPHELP.Com.Model; 
+﻿using EXCEL_SAPHELP.Com.Model;
 using EXCEL_SAPHELP.Properties;
 using EXCEL_SAPHELP.WinForm;
 using Microsoft.Office.Interop.Excel;
@@ -9,10 +9,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.IO; 
-using System.Net; 
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace EXCEL_SAPHELP.EXCEL
 {
 
@@ -163,9 +165,11 @@ namespace EXCEL_SAPHELP.EXCEL
                     worksheet2.Cells[num2, 5].Value = "数据类型";
                     worksheet2.Cells[num2, 6].Value = "结构中的位置";
                     worksheet2.Cells[num2, 7].Value = "长度";
-                    worksheet2.Cells[num2, 8].Value = "字段描述";
+                    worksheet2.Cells[num2, 8].Value = "小数位";
+                    worksheet2.Cells[num2, 9].Value = "表字段";
+                    worksheet2.Cells[num2, 10].Value = "字段描述";
                     SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
-                    string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,'" + stablename + "-' || sys_t_x031l.fieldname as field,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
+                    string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,sys_t_x031l.decimals,'" + stablename + "-' || sys_t_x031l.fieldname as field,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_dbfld.offset AS INTEGER)";
                     System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
                     foreach (DataRow row in dataTable.Rows)
                     {
@@ -177,11 +181,12 @@ namespace EXCEL_SAPHELP.EXCEL
                         (worksheet2.Cells[num2, 5]).Value = row["exid"];
                         (worksheet2.Cells[num2, 6]).Value = row["offset"];
                         (worksheet2.Cells[num2, 7]).Value = row["length"];
-                        (worksheet2.Cells[num2, 7]).Value = row["field"];
-                        (worksheet2.Cells[num2, 8]).Value = row["fieldtext"];
+                        (worksheet2.Cells[num2, 8]).Value = row["decimals"];
+                        (worksheet2.Cells[num2, 9]).Value = row["field"];
+                        (worksheet2.Cells[num2, 10]).Value = row["fieldtext"];
                     }
                     worksheet2.Columns.AutoFit();
-                    Borders borders = worksheet2.Range[worksheet2.Cells[1, 1], worksheet2.Cells[num2, 8]].Borders;
+                    Borders borders = worksheet2.Range[worksheet2.Cells[1, 1], worksheet2.Cells[num2, 10]].Borders;
                     borders.LineStyle = XlLineStyle.xlContinuous;
                     borders.Weight = XlBorderWeight.xlThin;
                 }
@@ -190,7 +195,7 @@ namespace EXCEL_SAPHELP.EXCEL
                 {
                     FullTable ft = new FullTable();
                     SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
-                    string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,'" + stablename + "-' || sys_t_x031l.fieldname as field,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_x031l.position AS INTEGER)";
+                    string sql = "select CAST(sys_t_x031l.position AS INTEGER) as position,sys_t_x031l.fieldname,sys_t_x031l.rollname,sys_t_x031l.dtyp,sys_t_x031l.exid,CAST(sys_t_dbfld.offset AS INTEGER) as offset,CAST(sys_t_dbfld.length AS INTEGER) as length,sys_t_x031l.decimals,'" + stablename + "-' || sys_t_x031l.fieldname as field,sys_t_dbfld.fieldtext from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname where sys_t_x031l.tabname = '" + stablename + "'  order by CAST(sys_t_dbfld.offset AS INTEGER)";
                     System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
                     ft.dt = dataTable;
                     ft.stitle = stablename;
@@ -493,5 +498,82 @@ namespace EXCEL_SAPHELP.EXCEL
             sQLiteDBHelper.ExecuteNonQuery(content, null);
         }
 
+        private void button5_Click(object sender, RibbonControlEventArgs e)
+        {
+            Process.Start("https://gitee.com/Tiger_Hu_gitee/EXCEL_SAPHELP");
+        }
+
+        private void bn_SignUp_Click(object sender, RibbonControlEventArgs e)
+        { 
+            IDataObject iData = Clipboard.GetDataObject();
+            string idstrc = (string)iData.GetData(DataFormats.Text);//检索与指定格式相关联的数据
+            SendKeys.Send("{ESC}");
+            string idstrv = "";
+            if (!string.IsNullOrEmpty(idstrc))
+            {
+                string[] allRow = idstrc.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < allRow.Length; i++)
+                {
+                    //把每行的数据按单元格截取，放到一个string数组里，第二个参数是不返回空字符
+                    string[] content = allRow[i].Trim().Split(new string[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+                    for (int j = 0; j < content.Length; j++)
+                    {
+                        string ssign = content[j].Substring(content[j].Length - 1, 1);
+                        if (!string.IsNullOrEmpty(ssign) && ssign == "-")
+                        {
+                            content[j] = "-" + content[j].Substring(0, content[j].Length - 1);
+                        }
+                        if (j < content.Length - 1)
+                        {
+                            idstrv += content[j] + "\t";
+                        }
+                        else
+                        {
+                            idstrv += content[j]  ; 
+                        }
+                    }
+
+                    if (i < allRow.Length - 1)
+                    {
+                        idstrv += "\r\n";
+                    }
+                }
+                Clipboard.SetDataObject(idstrv);
+                MessageBox.Show("处理成功,请指定单元格黏贴");
+            } 
+        }
+
+        private void bn_FL_Click(object sender, RibbonControlEventArgs e)
+        {
+            IDataObject iData = Clipboard.GetDataObject();
+            string idstrc = (string)iData.GetData(DataFormats.Text);//检索与指定格式相关联的数据 
+            SendKeys.Send("{ESC}");
+            string idstrv = "";
+            if (!string.IsNullOrEmpty(idstrc))
+            { 
+                string[] allRow = idstrc.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 3; i < allRow.Length-1; i++)
+                {
+                    if (i == 4)
+                    {
+                        continue;
+                    }
+                    allRow[i] = allRow[i].Substring(1, allRow[i].Length - 1);
+                    allRow[i] = allRow[i].Replace("|", "\t");
+                    if (i < allRow.Length - 1)
+                    {
+                        idstrv += allRow[i] + "\r\n";
+                    }
+                    else
+                    {
+                        idstrv += allRow[i]; 
+                    }
+                }
+                Clipboard.SetDataObject(idstrv);
+                MessageBox.Show("处理成功,请指定单元格黏贴");
+            }
+        }
+
+       
     }
 }

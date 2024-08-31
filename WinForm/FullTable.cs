@@ -37,6 +37,7 @@ public class FullTable : Form
     {
         this.TopMost = true;
         cDataGridView1.DataSource = dt;
+        this.cDataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         if (!string.IsNullOrEmpty(stitle))
         {
             this.Text = stitle;
@@ -81,6 +82,7 @@ public class FullTable : Form
 
     private void InitializeComponent()
     {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FullTable));
             this.ms_menu = new System.Windows.Forms.MenuStrip();
             this.tsb_Top = new System.Windows.Forms.ToolStripMenuItem();
             this.tstb_FindValue = new System.Windows.Forms.ToolStripTextBox();
@@ -102,7 +104,7 @@ public class FullTable : Form
             this.tlsp_YXXX});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
-            this.ms_menu.Size = new System.Drawing.Size(1042, 27);
+            this.ms_menu.Size = new System.Drawing.Size(1185, 27);
             this.ms_menu.TabIndex = 1;
             this.ms_menu.Text = "menuStrip1";
             // 
@@ -162,7 +164,7 @@ public class FullTable : Form
             this.cDataGridView1.SecondaryRowColor2 = System.Drawing.Color.White;
             this.cDataGridView1.SelectedRowColor1 = System.Drawing.Color.White;
             this.cDataGridView1.SelectedRowColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(217)))), ((int)(((byte)(254)))));
-            this.cDataGridView1.Size = new System.Drawing.Size(1042, 330);
+            this.cDataGridView1.Size = new System.Drawing.Size(1185, 330);
             this.cDataGridView1.TabIndex = 0;
             this.cDataGridView1.ButtonSelectClick += new CDataGridView.ButtonClick(this.cDataGridView1_ButtonSelectClick);
             // 
@@ -170,9 +172,10 @@ public class FullTable : Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 357);
+            this.ClientSize = new System.Drawing.Size(1185, 357);
             this.Controls.Add(this.cDataGridView1);
             this.Controls.Add(this.ms_menu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.ms_menu;
             this.Name = "FullTable";

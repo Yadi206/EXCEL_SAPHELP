@@ -310,6 +310,12 @@
     <EmbeddedResource Include="WinForm\FullTable.resx">
       <DependentUpon>FullTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Saplogon.resx">
+      <DependentUpon>Saplogon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\WTiaoJianChuangKou.resx">
+      <DependentUpon>WTiaoJianChuangKou.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="EXCEL_SAPHELP_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -3069,6 +3075,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\头像.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gitee.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -87,6 +87,7 @@ public class FindTable : Form
 
     private void InitializeComponent()
     {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindTable));
             this.ms_menu = new System.Windows.Forms.MenuStrip();
             this.tsb_Top = new System.Windows.Forms.ToolStripMenuItem();
             this.tstb_FindValue = new System.Windows.Forms.ToolStripTextBox();
@@ -180,6 +181,7 @@ public class FindTable : Form
             this.ClientSize = new System.Drawing.Size(572, 654);
             this.Controls.Add(this.cDataGridView1);
             this.Controls.Add(this.ms_menu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.ms_menu;
             this.Name = "FindTable";

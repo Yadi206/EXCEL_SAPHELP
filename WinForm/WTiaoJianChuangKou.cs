@@ -88,37 +88,49 @@ public class WTiaoJianChuangKou : Form
 
 	private void InitializeComponent()
 	{
-		this.button1 = new System.Windows.Forms.Button();
-		this.button2 = new System.Windows.Forms.Button();
-		base.SuspendLayout();
-		this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-		this.button1.Location = new System.Drawing.Point(21, 0);
-		this.button1.Name = "button1";
-		this.button1.Size = new System.Drawing.Size(58, 23);
-		this.button1.TabIndex = 0;
-		this.button1.Text = "确定";
-		this.button1.UseVisualStyleBackColor = true;
-		this.button1.Click += new System.EventHandler(button1_Click);
-		this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-		this.button2.Location = new System.Drawing.Point(85, 0);
-		this.button2.Name = "button2";
-		this.button2.Size = new System.Drawing.Size(58, 23);
-		this.button2.TabIndex = 1;
-		this.button2.Text = "取消";
-		this.button2.UseVisualStyleBackColor = true;
-		this.button2.Click += new System.EventHandler(button2_Click);
-		base.AutoScaleDimensions = new System.Drawing.SizeF(6f, 12f);
-		base.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-		this.AutoScroll = true;
-		base.ClientSize = new System.Drawing.Size(366, 369);
-		base.Controls.Add(this.button2);
-		base.Controls.Add(this.button1);
-		base.KeyPreview = true;
-		base.MaximizeBox = false;
-		base.MinimizeBox = false;
-		base.Name = "WTiaoJianChuangKou";
-		base.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-		this.Text = "WTiaoJianChuangKou";
-		base.ResumeLayout(false);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WTiaoJianChuangKou));
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(21, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(58, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "确定";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(85, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(58, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "取消";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // WTiaoJianChuangKou
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(366, 369);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "WTiaoJianChuangKou";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "WTiaoJianChuangKou";
+            this.ResumeLayout(false);
+
 	}
 }

@@ -42,6 +42,7 @@ namespace EXCEL_SAPHELP.EXCEL
             this.tab_SAPHelper = this.Factory.CreateRibbonTab();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.button2 = this.Factory.CreateRibbonButton();
+            this.button5 = this.Factory.CreateRibbonButton();
             this.gp_RFC = this.Factory.CreateRibbonGroup();
             this.bt_Connect = this.Factory.CreateRibbonButton();
             this.bn_Login = this.Factory.CreateRibbonButton();
@@ -57,6 +58,9 @@ namespace EXCEL_SAPHELP.EXCEL
             this.button3 = this.Factory.CreateRibbonButton();
             this.box5 = this.Factory.CreateRibbonBox();
             this.bn_ReadTableS = this.Factory.CreateRibbonButton();
+            this.group3 = this.Factory.CreateRibbonGroup();
+            this.bn_SignUp = this.Factory.CreateRibbonButton();
+            this.bn_FL = this.Factory.CreateRibbonButton();
             this.tab_SAPHelper.SuspendLayout();
             this.group2.SuspendLayout();
             this.gp_RFC.SuspendLayout();
@@ -64,6 +68,7 @@ namespace EXCEL_SAPHELP.EXCEL
             this.box1.SuspendLayout();
             this.box2.SuspendLayout();
             this.box5.SuspendLayout();
+            this.group3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab_SAPHelper
@@ -72,12 +77,14 @@ namespace EXCEL_SAPHELP.EXCEL
             this.tab_SAPHelper.Groups.Add(this.group2);
             this.tab_SAPHelper.Groups.Add(this.gp_RFC);
             this.tab_SAPHelper.Groups.Add(this.group1);
+            this.tab_SAPHelper.Groups.Add(this.group3);
             this.tab_SAPHelper.Label = "SAP助手(by Tiger)";
             this.tab_SAPHelper.Name = "tab_SAPHelper";
             // 
             // group2
             // 
             this.group2.Items.Add(this.button2);
+            this.group2.Items.Add(this.button5);
             this.group2.Label = "关于";
             this.group2.Name = "group2";
             // 
@@ -88,6 +95,14 @@ namespace EXCEL_SAPHELP.EXCEL
             this.button2.Name = "button2";
             this.button2.ShowImage = true;
             this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button2_Click);
+            // 
+            // button5
+            // 
+            this.button5.Image = global::EXCEL_SAPHELP.Properties.Resources.gitee;
+            this.button5.Label = "开源代码";
+            this.button5.Name = "button5";
+            this.button5.ShowImage = true;
+            this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button5_Click);
             // 
             // gp_RFC
             // 
@@ -202,6 +217,29 @@ namespace EXCEL_SAPHELP.EXCEL
             this.bn_ReadTableS.ShowImage = true;
             this.bn_ReadTableS.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bn_ReadTableS_Click);
             // 
+            // group3
+            // 
+            this.group3.Items.Add(this.bn_SignUp);
+            this.group3.Items.Add(this.bn_FL);
+            this.group3.Label = "剪切板文本处理";
+            this.group3.Name = "group3";
+            // 
+            // bn_SignUp
+            // 
+            this.bn_SignUp.Image = global::EXCEL_SAPHELP.Properties.Resources.S_B_AREA;
+            this.bn_SignUp.Label = "负号提前";
+            this.bn_SignUp.Name = "bn_SignUp";
+            this.bn_SignUp.ShowImage = true;
+            this.bn_SignUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bn_SignUp_Click);
+            // 
+            // bn_FL
+            // 
+            this.bn_FL.Image = global::EXCEL_SAPHELP.Properties.Resources.S_X__XLS;
+            this.bn_FL.Label = "分列处理(ALV导出在剪切板中)";
+            this.bn_FL.Name = "bn_FL";
+            this.bn_FL.ShowImage = true;
+            this.bn_FL.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bn_FL_Click);
+            // 
             // SAPHelper
             // 
             this.Name = "SAPHelper";
@@ -222,6 +260,8 @@ namespace EXCEL_SAPHELP.EXCEL
             this.box2.PerformLayout();
             this.box5.ResumeLayout(false);
             this.box5.PerformLayout();
+            this.group3.ResumeLayout(false);
+            this.group3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -264,6 +304,10 @@ namespace EXCEL_SAPHELP.EXCEL
         internal RibbonButton button2;
         internal RibbonBox box1;
         internal RibbonButton button4;
+        internal RibbonButton button5;
+        internal RibbonGroup group3;
+        internal RibbonButton bn_SignUp;
+        internal RibbonButton bn_FL;
     }
 
     //partial class ThisRibbonCollection
