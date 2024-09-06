@@ -24,7 +24,9 @@ public class FullTable : Form
     int currentcolumn = 0;
     private ToolStripMenuItem 标记全部ToolStripMenuItem1;
     private ToolStripMenuItem tlsp_YXXX;
+    private ToolStripMenuItem 查看文本表结构ToolStripMenuItem;
     string currentfindvalue = "";
+    public string sTxtTableName = "";
 
 
     public FullTable()
@@ -41,6 +43,10 @@ public class FullTable : Form
         if (!string.IsNullOrEmpty(stitle))
         {
             this.Text = stitle;
+        }
+        if (!string.IsNullOrEmpty(sTxtTableName))
+        {
+            查看文本表结构ToolStripMenuItem.Text = "查看文本表结构:" + sTxtTableName; 
         }
     }
 
@@ -90,6 +96,7 @@ public class FullTable : Form
             this.标记全部ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsp_YXXX = new System.Windows.Forms.ToolStripMenuItem();
             this.cDataGridView1 = new CDataGridView();
+            this.查看文本表结构ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -101,10 +108,11 @@ public class FullTable : Form
             this.tstb_FindValue,
             this.查找ToolStripMenuItem,
             this.标记全部ToolStripMenuItem1,
-            this.tlsp_YXXX});
+            this.tlsp_YXXX,
+            this.查看文本表结构ToolStripMenuItem});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
-            this.ms_menu.Size = new System.Drawing.Size(1185, 27);
+            this.ms_menu.Size = new System.Drawing.Size(1049, 27);
             this.ms_menu.TabIndex = 1;
             this.ms_menu.Text = "menuStrip1";
             // 
@@ -164,17 +172,27 @@ public class FullTable : Form
             this.cDataGridView1.SecondaryRowColor2 = System.Drawing.Color.White;
             this.cDataGridView1.SelectedRowColor1 = System.Drawing.Color.White;
             this.cDataGridView1.SelectedRowColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(217)))), ((int)(((byte)(254)))));
-            this.cDataGridView1.Size = new System.Drawing.Size(1185, 330);
+            this.cDataGridView1.Size = new System.Drawing.Size(1049, 330);
             this.cDataGridView1.TabIndex = 0;
             this.cDataGridView1.ButtonSelectClick += new CDataGridView.ButtonClick(this.cDataGridView1_ButtonSelectClick);
+            this.cDataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cDataGridView1_CellDoubleClick);
+            // 
+            // 查看文本表结构ToolStripMenuItem
+            // 
+            this.查看文本表结构ToolStripMenuItem.Name = "查看文本表结构ToolStripMenuItem";
+            this.查看文本表结构ToolStripMenuItem.Size = new System.Drawing.Size(104, 23);
+            this.查看文本表结构ToolStripMenuItem.Text = "查看文本表结构";
+            this.查看文本表结构ToolStripMenuItem.Click += new System.EventHandler(this.查看文本表结构ToolStripMenuItem_Click);
             // 
             // FullTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1185, 357);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(1049, 357);
             this.Controls.Add(this.cDataGridView1);
             this.Controls.Add(this.ms_menu);
+            this.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.ms_menu;
@@ -317,6 +335,86 @@ public class FullTable : Form
         if (tlsp_YXXX.Text == "自动转大写(点击切换允许小写)")
         {
             tlsp_YXXX.Text = "允许小写(点击切换自动转大写)";
+        }
+    }
+
+    private void cDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+    {
+        if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+        {
+            FullTable ft = new FullTable();
+            SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
+            string sql = "";
+            sql += "select CAST(sys_t_x031l.position AS INTEGER) as position, ";
+            sql += "       sys_t_x031l.fieldname, ";
+            sql += "       ifnull(sys_t_et_dfies.keyflag, '') as keyflag, ";
+            sql += "       sys_t_x031l.rollname,";
+            sql += "       sys_t_x031l.dtyp, ";
+            sql += "       sys_t_x031l.exid, ";
+            sql += "       ifnull(sys_t_et_dfies.checktable, '') as checktable, ";
+            sql += "       CAST(sys_t_dbfld.offset AS INTEGER) as offset, ";
+            sql += "       CAST(sys_t_dbfld.length AS INTEGER) as length, ";
+            sql += "       sys_t_x031l.decimals, ";
+            sql += "       '" + cDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "-' || sys_t_x031l.fieldname as field, ";
+            sql += "       sys_t_dbfld.fieldtext ";
+            sql += "from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname ";
+            sql += "                 LEFT join sys_t_et_dfies on sys_t_et_dfies.tabname = sys_t_x031l.tabname and sys_t_et_dfies.fieldname = sys_t_x031l.fieldname ";
+            sql += "where sys_t_x031l.tabname = '"+ cDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "' ";
+            sql += "order by CAST(sys_t_dbfld.offset AS INTEGER) ";
+            System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
+            ft.dt = dataTable;
+            sql = "select * from  sys_t_tables where tabname = '" + cDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "';";
+            System.Data.DataTable dt_tab = sQLiteDBHelper.ExecuteDataTable(sql);
+            if (dt_tab != null && dt_tab.Rows.Count > 0)
+            {
+                ft.stitle = dt_tab.Rows[0]["tabname"].ToString() + ":" + dt_tab.Rows[0]["tabdescribe"].ToString();
+                ft.sTxtTableName = dt_tab.Rows[0]["tabtxtname"].ToString();
+            }
+            else
+            {
+                ft.stitle = sTxtTableName;
+            }
+            ft.Show();
+        }
+    }
+
+    private void 查看文本表结构ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrEmpty(sTxtTableName))
+        { 
+            FullTable ft = new FullTable();
+            SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
+            string sql = "";
+            sql += "select CAST(sys_t_x031l.position AS INTEGER) as position, ";
+            sql += "       sys_t_x031l.fieldname, ";
+            sql += "       ifnull(sys_t_et_dfies.keyflag, '') as keyflag, ";
+            sql += "       sys_t_x031l.rollname,";
+            sql += "       sys_t_x031l.dtyp, ";
+            sql += "       sys_t_x031l.exid, ";
+            sql += "       ifnull(sys_t_et_dfies.checktable, '') as checktable, ";
+            sql += "       CAST(sys_t_dbfld.offset AS INTEGER) as offset, ";
+            sql += "       CAST(sys_t_dbfld.length AS INTEGER) as length, ";
+            sql += "       sys_t_x031l.decimals, ";
+            sql += "       '" + sTxtTableName + "-' || sys_t_x031l.fieldname as field, ";
+            sql += "       sys_t_dbfld.fieldtext ";
+            sql += "from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname ";
+            sql += "                 LEFT join sys_t_et_dfies on sys_t_et_dfies.tabname = sys_t_x031l.tabname and sys_t_et_dfies.fieldname = sys_t_x031l.fieldname ";
+            sql += "where sys_t_x031l.tabname = '" + sTxtTableName + "' ";
+            sql += "order by CAST(sys_t_dbfld.offset AS INTEGER) ";
+            System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
+            ft.dt = dataTable;
+            sql = "select * from  sys_t_tables where tabname = '" + sTxtTableName + "';";
+            System.Data.DataTable dt_tab = sQLiteDBHelper.ExecuteDataTable(sql);
+            if (dt_tab != null && dt_tab.Rows.Count > 0)
+            {
+                ft.stitle = dt_tab.Rows[0]["tabname"].ToString() + ":" + dt_tab.Rows[0]["tabdescribe"].ToString();
+                ft.sTxtTableName = dt_tab.Rows[0]["tabtxtname"].ToString();
+            }
+            else
+            {
+                ft.stitle = sTxtTableName;
+            }
+            ft.Show();
         }
     }
 }

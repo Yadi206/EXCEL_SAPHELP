@@ -2,7 +2,9 @@ using System;
 using EXCEL_SAPHELP.EXCEL;
 using SAP.Middleware.Connector;
  
-
+/// <summary>
+/// 读取表结构
+/// </summary>
 public static class RunDD_GET_NAMETAB_FOR_RFC
 {
 	public static int runfun(RfcDestination SapRfcD, RfcRepository SapRfcR, string TableName)

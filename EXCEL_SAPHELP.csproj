@@ -124,11 +124,11 @@
     </Reference>
     <Reference Include="sapnco, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\sapnco\v4.0_3.1.0.42__50436dca5c7f7d23\sapnco.dll</HintPath>
+      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\X86\sapnco.dll</HintPath>
     </Reference>
     <Reference Include="sapnco_utils, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\sapnco_utils\v4.0_3.1.0.42__50436dca5c7f7d23\sapnco_utils.dll</HintPath>
+      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\X86\sapnco_utils.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -243,6 +243,7 @@
     <Compile Include="Com\Model\SAPUILandscape.cs" />
     <Compile Include="Com\Model\sys_t_object.cs" />
     <Compile Include="Com\Model\sys_t_tablelist.cs" />
+    <Compile Include="Com\Model\Table.cs" />
     <Compile Include="Com\MouseHook.cs" />
     <Compile Include="Com\SQLiteDBHelper.cs" />
     <Compile Include="Com\SysConfigInfo.cs" />
@@ -256,6 +257,10 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RunFun\RFCHelp.cs" />
+    <Compile Include="RunFun\RunLTR_MODEL_GET_TABLE_TEXTS.cs" />
+    <Compile Include="RunFun\RunTABLE_GET_TEXTTABLE.cs" />
+    <Compile Include="RunFun\RunMDG_TR_NAMETAB_GET_RFC.cs" />
     <Compile Include="WinForm\CDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>

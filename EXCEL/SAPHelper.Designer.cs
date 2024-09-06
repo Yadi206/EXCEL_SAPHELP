@@ -43,6 +43,7 @@ namespace EXCEL_SAPHELP.EXCEL
             this.group2 = this.Factory.CreateRibbonGroup();
             this.button2 = this.Factory.CreateRibbonButton();
             this.button5 = this.Factory.CreateRibbonButton();
+            this.bnReSet = this.Factory.CreateRibbonButton();
             this.gp_RFC = this.Factory.CreateRibbonGroup();
             this.bt_Connect = this.Factory.CreateRibbonButton();
             this.bn_Login = this.Factory.CreateRibbonButton();
@@ -85,6 +86,7 @@ namespace EXCEL_SAPHELP.EXCEL
             // 
             this.group2.Items.Add(this.button2);
             this.group2.Items.Add(this.button5);
+            this.group2.Items.Add(this.bnReSet);
             this.group2.Label = "关于";
             this.group2.Name = "group2";
             // 
@@ -103,6 +105,14 @@ namespace EXCEL_SAPHELP.EXCEL
             this.button5.Name = "button5";
             this.button5.ShowImage = true;
             this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button5_Click);
+            // 
+            // bnReSet
+            // 
+            this.bnReSet.Image = global::EXCEL_SAPHELP.Properties.Resources.S_AGGREG;
+            this.bnReSet.Label = "引用数据库";
+            this.bnReSet.Name = "bnReSet";
+            this.bnReSet.ShowImage = true;
+            this.bnReSet.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bnReSet_Click);
             // 
             // gp_RFC
             // 
@@ -212,7 +222,7 @@ namespace EXCEL_SAPHELP.EXCEL
             // bn_ReadTableS
             // 
             this.bn_ReadTableS.Image = global::EXCEL_SAPHELP.Properties.Resources.S_B_BOYE;
-            this.bn_ReadTableS.Label = "读取表结构(CTRL + Q)";
+            this.bn_ReadTableS.Label = "读取表结构";
             this.bn_ReadTableS.Name = "bn_ReadTableS";
             this.bn_ReadTableS.ShowImage = true;
             this.bn_ReadTableS.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bn_ReadTableS_Click);
@@ -308,6 +318,7 @@ namespace EXCEL_SAPHELP.EXCEL
         internal RibbonGroup group3;
         internal RibbonButton bn_SignUp;
         internal RibbonButton bn_FL;
+        internal RibbonButton bnReSet;
     }
 
     //partial class ThisRibbonCollection

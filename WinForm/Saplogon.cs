@@ -495,7 +495,13 @@ public class Saplogon : Form
 	{
 		try
 		{
-			SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
+            if (!Directory.Exists(tb_RZML.Text))
+            {
+				MessageBox.Show("地址不存在,请选择存在的文件夹");
+				return;
+            }
+			 
+            SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
 			DataTable dataTable = sQLiteDBHelper.ExecuteDataTable("select * from sys_t_config");
 			string text = "";
 			SQLiteParameter[] parameters;
