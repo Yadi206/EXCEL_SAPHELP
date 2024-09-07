@@ -9,10 +9,14 @@ using SAP.Middleware.Connector;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -80,7 +84,7 @@ namespace EXCEL_SAPHELP.EXCEL
             System.Data.DataTable dt2 = sQLiteDBHelper.ExecuteDataTable("select * from sys_t_dbfld");
             if (dt2 == null || (dt2 != null && dt2.Rows.Count == 0))
             {
-                button4.Visible = true;
+                bnSapRiQi.Visible = true;
             }
 
 
@@ -613,6 +617,180 @@ namespace EXCEL_SAPHELP.EXCEL
         {
             Process.Start("https://gitee.com/Tiger_Hu_gitee/EXCEL_SAPHELP");
         }
+        private void setBiaoTou(Worksheet ws, int currow, int curcolumn)
+        {
+            Range curcell;
+            curcell = ws.Cells[currow, curcolumn];
+            curcell.Interior.Color = Color.Yellow;
+            curcell.Borders.LineStyle = 1;
+            curcell.Value = "字段";
+
+
+            curcell = ws.Cells[currow, curcolumn + 1];
+            curcell.Interior.Color = Color.Yellow;
+            curcell.Borders.LineStyle = 1;
+            curcell.Value = "字段描述";
+
+            curcell = ws.Cells[currow, curcolumn + 2];
+            curcell.Interior.Color = Color.Yellow;
+            curcell.Borders.LineStyle = 1;
+            curcell.Value = "字段类型";
+
+            curcell = ws.Cells[currow, curcolumn + 3];
+            curcell.Interior.Color = Color.Yellow;
+            curcell.Borders.LineStyle = 1;
+            curcell.Value = "字段长度";
+
+            curcell = ws.Cells[currow, curcolumn + 4];
+            curcell.Interior.Color = Color.Yellow;
+            curcell.Borders.LineStyle = 1;
+            curcell.Value = "小数";
+
+            curcell = ws.Cells[currow, curcolumn + 5];
+            curcell.Interior.Color = Color.Yellow;
+            curcell.Borders.LineStyle = 1;
+            curcell.Value = "是否必输";
+
+            curcell = ws.Cells[currow, curcolumn + 6];
+            curcell.Interior.Color = Color.Yellow;
+            curcell.Borders.LineStyle = 1;
+            curcell.Value = "备注";
+
+        }
+
+        private void setHeBing(Worksheet ws, int srow, int scolumn, int erow, int ecolumn)
+        {
+            ws.Range[ws.Cells[srow, scolumn], ws.Cells[erow, ecolumn]].Merge();
+            ws.Range[ws.Cells[srow, scolumn], ws.Cells[erow, ecolumn]].VerticalAlignment = XlVAlign.xlVAlignTop;
+        }
+
+        private void setBianKuang(Worksheet ws, int srow, int scolumn, int erow, int ecolumn)
+        {
+            ws.Range[ws.Cells[srow, scolumn], ws.Cells[erow, ecolumn]].Borders.LineStyle = 1;
+        }
+
+
+        private void setfunpara(Worksheet ws, ref int currow, ref int curcolumn, IRfcFunction rfun, RfcParameterMetadata rfcPM)
+        {
+            int icurcolumn = 0;
+            currow++;
+            int istartrow = currow;
+            Range curcell;
+            if (rfcPM.DataType == RfcDataType.STRUCTURE)
+            {
+                IRfcStructure s1 = rfun.GetStructure(rfcPM.Name);
+                ws.Cells[currow, curcolumn].Value = rfcPM.Name;
+                ws.Cells[currow, curcolumn + 1].Value = rfcPM.Documentation;
+                ws.Cells[currow, curcolumn + 2].Value = Enum.Format(typeof(RfcDataType), rfcPM.DataType, "g");
+                setBiaoTou(ws, currow, curcolumn + 3);
+                for (global::System.Int32 j = 0; j < s1.Count; j++)
+                {
+                    RfcFieldMetadata rsm = s1.Metadata[j];
+                    icurcolumn = curcolumn + 3;
+                    setstrupara(ws, ref currow, ref icurcolumn, s1, rsm);
+                }
+                setHeBing(ws, istartrow, curcolumn, currow, curcolumn);
+                setHeBing(ws, istartrow, curcolumn + 1, currow, curcolumn + 1);
+                setHeBing(ws, istartrow, curcolumn + 2, currow, curcolumn + 2);
+                setBianKuang(ws, istartrow, curcolumn, currow, curcolumn + 9);
+
+            }
+            else if (rfcPM.DataType == RfcDataType.TABLE)
+            {
+                IRfcTable t1 = rfun.GetTable(rfcPM.Name);
+                RfcTableMetadata tm1 = t1.Metadata;
+                RfcStructureMetadata sm1 = tm1.LineType;
+                IRfcStructure s1 = sm1.CreateStructure();
+                ws.Cells[currow, curcolumn].Value = rfcPM.Name;
+                ws.Cells[currow, curcolumn + 1].Value = rfcPM.Documentation;
+                ws.Cells[currow, curcolumn + 2].Value = Enum.Format(typeof(RfcDataType), rfcPM.DataType, "g");
+                setBiaoTou(ws, currow, curcolumn + 3);
+                for (global::System.Int32 j = 0; j < s1.Count; j++)
+                {
+                    RfcFieldMetadata rsm = s1.Metadata[j];
+                    icurcolumn = curcolumn + 3;
+                    setstrupara(ws, ref currow, ref icurcolumn, s1, rsm);
+                }
+                setHeBing(ws, istartrow, curcolumn, currow, curcolumn);
+                setHeBing(ws, istartrow, curcolumn + 1, currow, curcolumn + 1);
+                setHeBing(ws, istartrow, curcolumn + 2, currow, curcolumn + 2);
+                setBianKuang(ws, istartrow, curcolumn, currow, curcolumn + 9);
+            }
+            else
+            {
+                ws.Cells[currow, curcolumn].Value = rfcPM.Name;
+                ws.Cells[currow, curcolumn + 1].Value = rfcPM.Documentation;
+                ws.Cells[currow, curcolumn + 2].Value = Enum.Format(typeof(RfcDataType), rfcPM.DataType, "g");
+                ws.Cells[currow, curcolumn + 3].Value = rfcPM.NucLength;
+                ws.Cells[currow, curcolumn + 4].Value = rfcPM.Decimals;
+                if (!rfcPM.Optional)
+                {
+                    ws.Cells[currow, curcolumn + 5].Value = "必输";
+                }
+                ws.Cells[currow, curcolumn + 6].Value = rfcPM.DefaultValue;
+                setBianKuang(ws, istartrow, curcolumn, currow, curcolumn + 6);
+            }
+        }
+
+        private void setstrupara(Worksheet ws, ref int currow, ref int curcolumn, IRfcStructure rs, RfcFieldMetadata rfcFM)
+        {
+            int icurcolumn = 0;
+            currow++;
+            int istartrow = currow;
+            if (rfcFM.DataType == RfcDataType.STRUCTURE)
+            {
+
+                IRfcStructure s1 = rs.GetStructure(rfcFM.Name);
+                ws.Cells[currow, curcolumn].Value = rfcFM.Name;
+                ws.Cells[currow, curcolumn + 1].Value = rfcFM.Documentation;
+                ws.Cells[currow, curcolumn + 2].Value = Enum.Format(typeof(RfcDataType), rfcFM.DataType, "g");
+                setBiaoTou(ws, currow, curcolumn + 3);
+                for (global::System.Int32 j = 0; j < s1.Count; j++)
+                {
+                    RfcFieldMetadata rsm = s1.Metadata[j];
+                    icurcolumn = curcolumn + 3;
+                    setstrupara(ws, ref currow, ref icurcolumn, s1, rsm);
+                }
+                setHeBing(ws, istartrow, curcolumn, currow, curcolumn);
+                setHeBing(ws, istartrow, curcolumn + 1, currow, curcolumn + 1);
+                setHeBing(ws, istartrow, curcolumn + 2, currow, curcolumn + 2);
+                setBianKuang(ws, istartrow, curcolumn, currow, curcolumn + 9);
+            }
+            else if (rfcFM.DataType == RfcDataType.TABLE)
+            {
+                IRfcTable t1 = rs.GetTable(rfcFM.Name);
+
+                RfcTableMetadata tm1 = t1.Metadata;
+                RfcStructureMetadata sm1 = tm1.LineType;
+                IRfcStructure s1 = sm1.CreateStructure();
+                ws.Cells[currow, curcolumn].Value = rfcFM.Name;
+                ws.Cells[currow, curcolumn + 2].Value = Enum.Format(typeof(RfcDataType), rfcFM.DataType, "g");
+                setBiaoTou(ws, currow, curcolumn + 3);
+                for (global::System.Int32 j = 0; j < s1.Count; j++)
+                {
+                    RfcFieldMetadata rsm = s1.Metadata[j];
+                    icurcolumn = curcolumn + 3;
+                    setstrupara(ws, ref currow, ref icurcolumn, s1, rsm);
+                }
+                setHeBing(ws, istartrow, curcolumn, currow, curcolumn);
+                setHeBing(ws, istartrow, curcolumn + 1, currow, curcolumn + 1);
+                setHeBing(ws, istartrow, curcolumn + 2, currow, curcolumn + 2);
+                setBianKuang(ws, istartrow, curcolumn, currow, curcolumn + 9);
+            }
+            else
+            {
+                ws.Cells[currow, curcolumn].Value = rfcFM.Name;
+                ws.Cells[currow, curcolumn + 1].Value = rfcFM.Documentation;
+                ws.Cells[currow, curcolumn + 2].Value = Enum.Format(typeof(RfcDataType), rfcFM.DataType, "g");
+                ws.Cells[currow, curcolumn + 3].Value = rfcFM.NucLength;
+                ws.Cells[currow, curcolumn + 4].Value = rfcFM.Decimals;
+                ws.Cells[currow, curcolumn + 5].Value = "";
+                ws.Cells[currow, curcolumn + 6].Value = "";
+                setBianKuang(ws, istartrow, curcolumn, currow, curcolumn + 6);
+            }
+        }
+
+
 
         private void bn_SignUp_Click(object sender, RibbonControlEventArgs e)
         {
@@ -706,6 +884,187 @@ namespace EXCEL_SAPHELP.EXCEL
             }
         }
 
+        private void bnSapRiQi_Click(object sender, RibbonControlEventArgs e)
+        {
+            Worksheet activeSheet = Globals.ThisAddIn.Application.ActiveSheet;
+            Range selectedRange = Globals.ThisAddIn.Application.Selection;
 
+            foreach (Range cell in selectedRange.Cells)
+            {
+                try
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                    {
+                        string svalue = cell.Value.ToString().Replace(".", "-");
+                        DateTime dte = DateTime.Parse(svalue);
+                        cell.Value = dte.Year.ToString() + dte.Month.ToString("00") + dte.Day.ToString("00");
+                        cell.NumberFormatLocal = "@";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cell.Interior.Color = Color.Red;
+                }
+            }
+        }
+
+        private void bnSAPShuZhi_Click(object sender, RibbonControlEventArgs e)
+        {
+            Worksheet activeSheet = Globals.ThisAddIn.Application.ActiveSheet;
+            Range selectedRange = Globals.ThisAddIn.Application.Selection;
+            foreach (Range cell in selectedRange.Cells)
+            {
+                try
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                    {
+                        string svalue = cell.Value.ToString().Replace(",", "");
+                        svalue = svalue.Replace("，", "");
+                        svalue = svalue.Replace("，", "");
+                        svalue = svalue.Replace(" ", "");
+                        decimal d = decimal.Parse(svalue);
+                        d = Math.Round(d, 3);
+
+                        cell.Value = d;
+                        cell.NumberFormatLocal = "0.000";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cell.Interior.Color = Color.Red;
+                }
+            }
+        }
+
+        private void bnJinE_Click(object sender, RibbonControlEventArgs e)
+        {
+            Worksheet activeSheet = Globals.ThisAddIn.Application.ActiveSheet;
+            Range selectedRange = Globals.ThisAddIn.Application.Selection;
+            foreach (Range cell in selectedRange.Cells)
+            {
+                try
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                    {
+                        string svalue = cell.Value.ToString().Replace(",", "");
+                        svalue = svalue.Replace("，", "");
+                        svalue = svalue.Replace("，", "");
+                        svalue = svalue.Replace(" ", "");
+                        decimal d = decimal.Parse(svalue);
+                        d = Math.Round(d, 2);
+                        cell.Value = d;
+                        cell.NumberFormatLocal = "0.00";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cell.Interior.Color = Color.Red;
+                }
+            }
+        }
+
+        private void bnReadRFC_Click(object sender, RibbonControlEventArgs e)
+        {
+            frWriteFunName wf = new frWriteFunName();
+            if (wf.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string sfunanme = wf.FunName;
+                    int icurrow = 0;
+                    int icurcolumn = 0;
+                    Workbook activeWorkbook = Globals.ThisAddIn.Application.ActiveWorkbook;
+                    bool flag1 = false;
+                    foreach (Worksheet sheet in activeWorkbook.Sheets)
+                    {
+                        if (sheet != null && sheet.Name == sfunanme)
+                        {
+                            flag1 = true;
+                            break;
+                        }
+                    }
+                    if (flag1)
+                    {
+                        (activeWorkbook.Sheets[sfunanme]).Delete();
+                    }
+                    Worksheet worksheet2 = activeWorkbook.Worksheets.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                    worksheet2.Name = sfunanme;
+                    worksheet2.Cells[1, 1].Value = sfunanme;
+                    IRfcFunction rfcFunction = SysConfigInfo.SapRfcRepository.CreateFunction(sfunanme);
+                    //IMPORT
+                    icurrow = 2;
+                    icurcolumn = 1;
+                    worksheet2.Cells[icurrow, 1].value = "输入参数:";
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].Merge();
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].Interior.Color = Color.Orange;
+                    icurrow++;
+                    setBiaoTou(worksheet2, icurrow, 1);
+                    for (global::System.Int32 i = 0; i < rfcFunction.Metadata.ParameterCount; i++)
+                    {
+                        RfcParameterMetadata rpm = rfcFunction.Metadata[i];
+                        if (rpm.Direction == RfcDirection.IMPORT)
+                        {
+                            setfunpara(worksheet2, ref icurrow, ref icurcolumn, rfcFunction, rpm);
+                        }
+                    }
+                    //EXPORT 
+                    icurrow++;
+                    icurcolumn = 1;
+                    worksheet2.Cells[icurrow, 1].value = "输出参数:";
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].Merge();
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].Interior.Color = Color.Orange;
+                    icurrow++;
+                    setBiaoTou(worksheet2, icurrow, 1);
+                    for (global::System.Int32 i = 0; i < rfcFunction.Metadata.ParameterCount; i++)
+                    {
+                        RfcParameterMetadata rpm = rfcFunction.Metadata[i];
+                        if (rpm.Direction == RfcDirection.EXPORT)
+                        {
+                            setfunpara(worksheet2, ref icurrow, ref icurcolumn, rfcFunction, rpm);
+                        }
+                    }
+                    //CHANGING
+                    icurrow++;
+                    icurcolumn = 1;
+                    worksheet2.Cells[icurrow, 1].value = "更改参数:";
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].Merge();
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].Interior.Color = Color.Orange;
+                    icurrow++;
+                    setBiaoTou(worksheet2, icurrow, 1);
+                    for (global::System.Int32 i = 0; i < rfcFunction.Metadata.ParameterCount; i++)
+                    {
+                        RfcParameterMetadata rpm = rfcFunction.Metadata[i];
+                        if (rpm.Direction == RfcDirection.CHANGING)
+                        {
+                            setfunpara(worksheet2, ref icurrow, ref icurcolumn, rfcFunction, rpm);
+                        }
+                    }
+                    //TABLES  
+                    icurrow++;
+                    icurcolumn = 1;
+                    worksheet2.Cells[icurrow, 1].value = "表参数:";
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].Merge();
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+                    worksheet2.Range[worksheet2.Cells[icurrow, icurcolumn], worksheet2.Cells[icurrow, icurcolumn + 7]].Interior.Color = Color.Orange;
+                    icurrow++;
+                    setBiaoTou(worksheet2, icurrow, 1);
+                    for (global::System.Int32 i = 0; i < rfcFunction.Metadata.ParameterCount; i++)
+                    {
+                        RfcParameterMetadata rpm = rfcFunction.Metadata[i];
+                        if (rpm.Direction == RfcDirection.TABLES)
+                        {
+                            setfunpara(worksheet2, ref icurrow, ref icurcolumn, rfcFunction, rpm);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            } 
+        }
     }
 }

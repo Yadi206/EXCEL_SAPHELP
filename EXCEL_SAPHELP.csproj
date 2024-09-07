@@ -124,11 +124,11 @@
     </Reference>
     <Reference Include="sapnco, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\X86\sapnco.dll</HintPath>
+      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\x64\sapnco.dll</HintPath>
     </Reference>
     <Reference Include="sapnco_utils, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\X86\sapnco_utils.dll</HintPath>
+      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\x64\sapnco_utils.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -257,6 +257,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Ribbon.cs">
+      <XmlRibbon>true</XmlRibbon>
+    </Compile>
     <Compile Include="RunFun\RFCHelp.cs" />
     <Compile Include="RunFun\RunLTR_MODEL_GET_TABLE_TEXTS.cs" />
     <Compile Include="RunFun\RunTABLE_GET_TEXTTABLE.cs" />
@@ -270,6 +273,12 @@
     </Compile>
     <Compile Include="WinForm\CWaitForm.designer.cs">
       <DependentUpon>CWaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\frWriteFunName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\frWriteFunName.Designer.cs">
+      <DependentUpon>frWriteFunName.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\frWriteTableName.cs">
       <SubType>Form</SubType>
@@ -305,6 +314,9 @@
     </Compile>
     <EmbeddedResource Include="WinForm\CWaitForm.resx">
       <DependentUpon>CWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\frWriteFunName.resx">
+      <DependentUpon>frWriteFunName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\frWriteTableName.resx">
       <DependentUpon>frWriteTableName.cs</DependentUpon>
@@ -3083,6 +3095,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gitee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ribbon.xml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
