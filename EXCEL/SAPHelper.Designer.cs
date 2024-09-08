@@ -50,23 +50,24 @@ namespace EXCEL_SAPHELP.EXCEL
             this.bn_LogonGui = this.Factory.CreateRibbonButton();
             this.tgb_ConfigFlag = this.Factory.CreateRibbonToggleButton();
             this.tgb_LogonFlag = this.Factory.CreateRibbonToggleButton();
-            this.bnReSet = this.Factory.CreateRibbonButton();
+            this.bnReadRFC = this.Factory.CreateRibbonButton();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.box1 = this.Factory.CreateRibbonBox();
             this.tgb_flag = this.Factory.CreateRibbonToggleButton();
+            this.bnReSet = this.Factory.CreateRibbonButton();
             this.box2 = this.Factory.CreateRibbonBox();
             this.button1 = this.Factory.CreateRibbonButton();
             this.button3 = this.Factory.CreateRibbonButton();
             this.box5 = this.Factory.CreateRibbonBox();
             this.bn_ReadTableS = this.Factory.CreateRibbonButton();
             this.group3 = this.Factory.CreateRibbonGroup();
+            this.buttonGroup1 = this.Factory.CreateRibbonButtonGroup();
             this.bn_SignUp = this.Factory.CreateRibbonButton();
             this.bn_FL = this.Factory.CreateRibbonButton();
-            this.group4 = this.Factory.CreateRibbonGroup();
+            this.buttonGroup2 = this.Factory.CreateRibbonButtonGroup();
             this.bnSapRiQi = this.Factory.CreateRibbonButton();
             this.bnSAPShuZhi = this.Factory.CreateRibbonButton();
             this.bnJinE = this.Factory.CreateRibbonButton();
-            this.bnReadRFC = this.Factory.CreateRibbonButton();
             this.tab_SAPHelper.SuspendLayout();
             this.group2.SuspendLayout();
             this.gp_RFC.SuspendLayout();
@@ -75,7 +76,8 @@ namespace EXCEL_SAPHELP.EXCEL
             this.box2.SuspendLayout();
             this.box5.SuspendLayout();
             this.group3.SuspendLayout();
-            this.group4.SuspendLayout();
+            this.buttonGroup1.SuspendLayout();
+            this.buttonGroup2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab_SAPHelper
@@ -85,7 +87,6 @@ namespace EXCEL_SAPHELP.EXCEL
             this.tab_SAPHelper.Groups.Add(this.gp_RFC);
             this.tab_SAPHelper.Groups.Add(this.group1);
             this.tab_SAPHelper.Groups.Add(this.group3);
-            this.tab_SAPHelper.Groups.Add(this.group4);
             this.tab_SAPHelper.Label = "SAP助手";
             this.tab_SAPHelper.Name = "tab_SAPHelper";
             // 
@@ -167,13 +168,13 @@ namespace EXCEL_SAPHELP.EXCEL
             this.tgb_LogonFlag.Name = "tgb_LogonFlag";
             this.tgb_LogonFlag.ShowImage = true;
             // 
-            // bnReSet
+            // bnReadRFC
             // 
-            this.bnReSet.Image = global::EXCEL_SAPHELP.Properties.Resources.S_AGGREG;
-            this.bnReSet.Label = "引用数据库";
-            this.bnReSet.Name = "bnReSet";
-            this.bnReSet.ShowImage = true;
-            this.bnReSet.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bnReSet_Click);
+            this.bnReadRFC.Image = global::EXCEL_SAPHELP.Properties.Resources.S_USEREL;
+            this.bnReadRFC.Label = "读取RFC结构";
+            this.bnReadRFC.Name = "bnReadRFC";
+            this.bnReadRFC.ShowImage = true;
+            this.bnReadRFC.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bnReadRFC_Click);
             // 
             // group1
             // 
@@ -196,6 +197,14 @@ namespace EXCEL_SAPHELP.EXCEL
             this.tgb_flag.Name = "tgb_flag";
             this.tgb_flag.ShowImage = true;
             this.tgb_flag.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.tgb_flag_Click);
+            // 
+            // bnReSet
+            // 
+            this.bnReSet.Image = global::EXCEL_SAPHELP.Properties.Resources.S_AGGREG;
+            this.bnReSet.Label = "引用数据库";
+            this.bnReSet.Name = "bnReSet";
+            this.bnReSet.ShowImage = true;
+            this.bnReSet.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bnReSet_Click);
             // 
             // box2
             // 
@@ -235,10 +244,16 @@ namespace EXCEL_SAPHELP.EXCEL
             // 
             // group3
             // 
-            this.group3.Items.Add(this.bn_SignUp);
-            this.group3.Items.Add(this.bn_FL);
+            this.group3.Items.Add(this.buttonGroup1);
+            this.group3.Items.Add(this.buttonGroup2);
             this.group3.Label = "剪切板文本处理";
             this.group3.Name = "group3";
+            // 
+            // buttonGroup1
+            // 
+            this.buttonGroup1.Items.Add(this.bn_SignUp);
+            this.buttonGroup1.Items.Add(this.bn_FL);
+            this.buttonGroup1.Name = "buttonGroup1";
             // 
             // bn_SignUp
             // 
@@ -254,14 +269,14 @@ namespace EXCEL_SAPHELP.EXCEL
             this.bn_FL.Label = "分列处理(ALV导出在剪切板中)";
             this.bn_FL.Name = "bn_FL";
             this.bn_FL.ShowImage = true;
+            this.bn_FL.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bn_FL_Click);
             // 
-            // group4
+            // buttonGroup2
             // 
-            this.group4.Items.Add(this.bnSapRiQi);
-            this.group4.Items.Add(this.bnSAPShuZhi);
-            this.group4.Items.Add(this.bnJinE);
-            this.group4.Label = "批导模板处理";
-            this.group4.Name = "group4";
+            this.buttonGroup2.Items.Add(this.bnSapRiQi);
+            this.buttonGroup2.Items.Add(this.bnSAPShuZhi);
+            this.buttonGroup2.Items.Add(this.bnJinE);
+            this.buttonGroup2.Name = "buttonGroup2";
             // 
             // bnSapRiQi
             // 
@@ -280,14 +295,6 @@ namespace EXCEL_SAPHELP.EXCEL
             this.bnJinE.Label = "->SAP金额";
             this.bnJinE.Name = "bnJinE";
             this.bnJinE.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bnJinE_Click);
-            // 
-            // bnReadRFC
-            // 
-            this.bnReadRFC.Image = global::EXCEL_SAPHELP.Properties.Resources.S_USEREL;
-            this.bnReadRFC.Label = "读取RFC结构";
-            this.bnReadRFC.Name = "bnReadRFC";
-            this.bnReadRFC.ShowImage = true;
-            this.bnReadRFC.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bnReadRFC_Click);
             // 
             // SAPHelper
             // 
@@ -311,8 +318,10 @@ namespace EXCEL_SAPHELP.EXCEL
             this.box5.PerformLayout();
             this.group3.ResumeLayout(false);
             this.group3.PerformLayout();
-            this.group4.ResumeLayout(false);
-            this.group4.PerformLayout();
+            this.buttonGroup1.ResumeLayout(false);
+            this.buttonGroup1.PerformLayout();
+            this.buttonGroup2.ResumeLayout(false);
+            this.buttonGroup2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -360,11 +369,12 @@ namespace EXCEL_SAPHELP.EXCEL
         internal RibbonButton bn_FL;
         internal RibbonButton bnReSet;
         internal RibbonButton bnSapRiQi;
-        internal RibbonGroup group4;
         internal RibbonButton bnSAPShuZhi;
         internal RibbonButton bnJinE;
         internal RibbonLabel label1;
         internal RibbonButton bnReadRFC;
+        internal RibbonButtonGroup buttonGroup1;
+        internal RibbonButtonGroup buttonGroup2;
     }
 
     //partial class ThisRibbonCollection

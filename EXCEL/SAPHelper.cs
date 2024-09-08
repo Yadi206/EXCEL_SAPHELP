@@ -862,6 +862,8 @@ namespace EXCEL_SAPHELP.EXCEL
                 MessageBox.Show("处理成功,请指定单元格黏贴");
             }
         }
+ 
+
 
         private void bnReSet_Click(object sender, RibbonControlEventArgs e)
         {
@@ -1064,7 +1066,9 @@ namespace EXCEL_SAPHELP.EXCEL
                 {
                     throw ex;
                 }
-            } 
+            }
         }
+
+       
     }
 }

@@ -153,6 +153,8 @@ public class FindTable : Form
             this.cDataGridView1.AllowUserToAddRows = false;
             this.cDataGridView1.AllowUserToDeleteRows = false;
             this.cDataGridView1.AllowUserToOrderColumns = true;
+            this.cDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.cDataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.cDataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.cDataGridView1.ColumnHeaderColor1 = System.Drawing.Color.White;
             this.cDataGridView1.ColumnHeaderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(208)))), ((int)(((byte)(200)))));

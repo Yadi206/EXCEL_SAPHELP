@@ -95,8 +95,8 @@ public class FullTable : Form
             this.查找ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.标记全部ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsp_YXXX = new System.Windows.Forms.ToolStripMenuItem();
-            this.cDataGridView1 = new CDataGridView();
             this.查看文本表结构ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cDataGridView1 = new CDataGridView();
             this.ms_menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -112,7 +112,7 @@ public class FullTable : Form
             this.查看文本表结构ToolStripMenuItem});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
-            this.ms_menu.Size = new System.Drawing.Size(1049, 27);
+            this.ms_menu.Size = new System.Drawing.Size(1100, 27);
             this.ms_menu.TabIndex = 1;
             this.ms_menu.Text = "menuStrip1";
             // 
@@ -151,11 +151,20 @@ public class FullTable : Form
             this.tlsp_YXXX.Text = "自动转大写(点击切换允许小写)";
             this.tlsp_YXXX.Click += new System.EventHandler(this.tlsp_YXXX_Click);
             // 
+            // 查看文本表结构ToolStripMenuItem
+            // 
+            this.查看文本表结构ToolStripMenuItem.Name = "查看文本表结构ToolStripMenuItem";
+            this.查看文本表结构ToolStripMenuItem.Size = new System.Drawing.Size(104, 23);
+            this.查看文本表结构ToolStripMenuItem.Text = "查看文本表结构";
+            this.查看文本表结构ToolStripMenuItem.Click += new System.EventHandler(this.查看文本表结构ToolStripMenuItem_Click);
+            // 
             // cDataGridView1
             // 
             this.cDataGridView1.AllowUserToAddRows = false;
             this.cDataGridView1.AllowUserToDeleteRows = false;
             this.cDataGridView1.AllowUserToOrderColumns = true;
+            this.cDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.cDataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.cDataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.cDataGridView1.ColumnHeaderColor1 = System.Drawing.Color.White;
             this.cDataGridView1.ColumnHeaderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(208)))), ((int)(((byte)(200)))));
@@ -172,24 +181,17 @@ public class FullTable : Form
             this.cDataGridView1.SecondaryRowColor2 = System.Drawing.Color.White;
             this.cDataGridView1.SelectedRowColor1 = System.Drawing.Color.White;
             this.cDataGridView1.SelectedRowColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(217)))), ((int)(((byte)(254)))));
-            this.cDataGridView1.Size = new System.Drawing.Size(1049, 330);
+            this.cDataGridView1.Size = new System.Drawing.Size(1100, 330);
             this.cDataGridView1.TabIndex = 0;
             this.cDataGridView1.ButtonSelectClick += new CDataGridView.ButtonClick(this.cDataGridView1_ButtonSelectClick);
             this.cDataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cDataGridView1_CellDoubleClick);
-            // 
-            // 查看文本表结构ToolStripMenuItem
-            // 
-            this.查看文本表结构ToolStripMenuItem.Name = "查看文本表结构ToolStripMenuItem";
-            this.查看文本表结构ToolStripMenuItem.Size = new System.Drawing.Size(104, 23);
-            this.查看文本表结构ToolStripMenuItem.Text = "查看文本表结构";
-            this.查看文本表结构ToolStripMenuItem.Click += new System.EventHandler(this.查看文本表结构ToolStripMenuItem_Click);
             // 
             // FullTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1049, 357);
+            this.ClientSize = new System.Drawing.Size(1100, 357);
             this.Controls.Add(this.cDataGridView1);
             this.Controls.Add(this.ms_menu);
             this.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
