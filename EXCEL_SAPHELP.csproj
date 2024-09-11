@@ -124,11 +124,11 @@
     </Reference>
     <Reference Include="sapnco, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\X86\sapnco.dll</HintPath>
+      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\x64\sapnco.dll</HintPath>
     </Reference>
     <Reference Include="sapnco_utils, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\X86\sapnco_utils.dll</HintPath>
+      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\x64\sapnco_utils.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
