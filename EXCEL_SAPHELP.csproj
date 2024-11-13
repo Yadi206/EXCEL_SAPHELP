@@ -122,14 +122,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\NET\VSTO\EXCEL_SAPHELP\EXCEL_SAPHELP\DLL\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="sapnco, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\x64\sapnco.dll</HintPath>
-    </Reference>
-    <Reference Include="sapnco_utils, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\NET\VSTO\EXCEL_KR\DLL\x64\sapnco_utils.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -227,11 +219,8 @@
   -->
   <ItemGroup>
     <Compile Include="Com\ExcelApp.cs" />
-    <Compile Include="Com\Hook.cs" />
     <Compile Include="Com\HookHelper.cs" />
-    <Compile Include="Com\KeyboardHook2.cs" />
     <Compile Include="Com\KeyboardHook.cs" />
-    <Compile Include="Com\KeyHook.cs" />
     <Compile Include="Com\Model\BianLiang.cs" />
     <Compile Include="Com\Model\MiMa.cs" />
     <Compile Include="Com\Model\MiMaHang.cs" />
@@ -244,7 +233,7 @@
     <Compile Include="Com\Model\sys_t_object.cs" />
     <Compile Include="Com\Model\sys_t_tablelist.cs" />
     <Compile Include="Com\Model\Table.cs" />
-    <Compile Include="Com\MouseHook.cs" />
+    <Compile Include="Com\SapTableInfo.cs" />
     <Compile Include="Com\SQLiteDBHelper.cs" />
     <Compile Include="Com\SysConfigInfo.cs" />
     <Compile Include="Com\Win32API.cs" />
@@ -260,10 +249,6 @@
     <Compile Include="Ribbon.cs">
       <XmlRibbon>true</XmlRibbon>
     </Compile>
-    <Compile Include="RunFun\RFCHelp.cs" />
-    <Compile Include="RunFun\RunLTR_MODEL_GET_TABLE_TEXTS.cs" />
-    <Compile Include="RunFun\RunTABLE_GET_TEXTTABLE.cs" />
-    <Compile Include="RunFun\RunMDG_TR_NAMETAB_GET_RFC.cs" />
     <Compile Include="WinForm\CDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -290,9 +275,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinForm\FullTable.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WinForm\Saplogon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Com\Model\ShaiXuan.cs" />
@@ -327,9 +309,6 @@
     <EmbeddedResource Include="WinForm\FullTable.resx">
       <DependentUpon>FullTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\Saplogon.resx">
-      <DependentUpon>Saplogon.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="WinForm\WTiaoJianChuangKou.resx">
       <DependentUpon>WTiaoJianChuangKou.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,8 +324,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RunFun\RunDD_GET_NAMETAB_FOR_RFC.cs" />
-    <Compile Include="RunFun\RunRFC_READ_TABLE.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>

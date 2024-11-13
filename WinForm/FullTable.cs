@@ -10,6 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 public class FullTable : Form
 {
+    public bool ishaveinclude = false;
     public string stitle = "";
     public DataTable dt; 
     public DataSet ds; 
@@ -344,27 +345,15 @@ public class FullTable : Form
     {
         if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
         {
-            FullTable ft = new FullTable();
-            SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
+            if (cDataGridView1.Columns[e.ColumnIndex].Name != "值域表")
+            {
+                return;
+            }
+            FullTable ft = new FullTable(); 
+            ft.ishaveinclude = this.ishaveinclude;
+            ft.dt = SapTableInfo.getSapTable(cDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), this.ishaveinclude);
             string sql = "";
-            sql += "select CAST(sys_t_x031l.position AS INTEGER) as position, ";
-            sql += "       sys_t_x031l.fieldname, ";
-            sql += "       ifnull(sys_t_et_dfies.keyflag, '') as keyflag, ";
-            sql += "       sys_t_x031l.rollname,";
-            sql += "       sys_t_x031l.dtyp, ";
-            sql += "       sys_t_x031l.exid, ";
-            sql += "       ifnull(sys_t_et_dfies.checktable, '') as checktable, ";
-            sql += "       CAST(sys_t_dbfld.offset AS INTEGER) as offset, ";
-            sql += "       CAST(sys_t_dbfld.length AS INTEGER) as length, ";
-            sql += "       sys_t_x031l.decimals, ";
-            sql += "       '" + cDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "-' || sys_t_x031l.fieldname as field, ";
-            sql += "       sys_t_dbfld.fieldtext ";
-            sql += "from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname ";
-            sql += "                 LEFT join sys_t_et_dfies on sys_t_et_dfies.tabname = sys_t_x031l.tabname and sys_t_et_dfies.fieldname = sys_t_x031l.fieldname ";
-            sql += "where sys_t_x031l.tabname = '"+ cDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "' ";
-            sql += "order by CAST(sys_t_dbfld.offset AS INTEGER) ";
-            System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
-            ft.dt = dataTable;
+            SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
             sql = "select * from  sys_t_tables where tabname = '" + cDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "';";
             System.Data.DataTable dt_tab = sQLiteDBHelper.ExecuteDataTable(sql);
             if (dt_tab != null && dt_tab.Rows.Count > 0)
@@ -385,26 +374,10 @@ public class FullTable : Form
         if (!string.IsNullOrEmpty(sTxtTableName))
         { 
             FullTable ft = new FullTable();
+            ft.ishaveinclude = this.ishaveinclude;
+            ft.dt = SapTableInfo.getSapTable(sTxtTableName,this.ishaveinclude); 
             SQLiteDBHelper sQLiteDBHelper = new SQLiteDBHelper(SysConfigInfo.sqlite_path);
             string sql = "";
-            sql += "select CAST(sys_t_x031l.position AS INTEGER) as position, ";
-            sql += "       sys_t_x031l.fieldname, ";
-            sql += "       ifnull(sys_t_et_dfies.keyflag, '') as keyflag, ";
-            sql += "       sys_t_x031l.rollname,";
-            sql += "       sys_t_x031l.dtyp, ";
-            sql += "       sys_t_x031l.exid, ";
-            sql += "       ifnull(sys_t_et_dfies.checktable, '') as checktable, ";
-            sql += "       CAST(sys_t_dbfld.offset AS INTEGER) as offset, ";
-            sql += "       CAST(sys_t_dbfld.length AS INTEGER) as length, ";
-            sql += "       sys_t_x031l.decimals, ";
-            sql += "       '" + sTxtTableName + "-' || sys_t_x031l.fieldname as field, ";
-            sql += "       sys_t_dbfld.fieldtext ";
-            sql += "from sys_t_x031l inner join sys_t_dbfld on sys_t_dbfld.tabname = sys_t_x031l.tabname and sys_t_dbfld.fieldname = sys_t_x031l.fieldname ";
-            sql += "                 LEFT join sys_t_et_dfies on sys_t_et_dfies.tabname = sys_t_x031l.tabname and sys_t_et_dfies.fieldname = sys_t_x031l.fieldname ";
-            sql += "where sys_t_x031l.tabname = '" + sTxtTableName + "' ";
-            sql += "order by CAST(sys_t_dbfld.offset AS INTEGER) ";
-            System.Data.DataTable dataTable = sQLiteDBHelper.ExecuteDataTable(sql);
-            ft.dt = dataTable;
             sql = "select * from  sys_t_tables where tabname = '" + sTxtTableName + "';";
             System.Data.DataTable dt_tab = sQLiteDBHelper.ExecuteDataTable(sql);
             if (dt_tab != null && dt_tab.Rows.Count > 0)

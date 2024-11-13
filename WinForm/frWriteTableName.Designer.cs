@@ -35,6 +35,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.bn_FindTable = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -57,7 +58,7 @@
             // rb_Sheet
             // 
             this.rb_Sheet.AutoSize = true;
-            this.rb_Sheet.Location = new System.Drawing.Point(15, 67);
+            this.rb_Sheet.Location = new System.Drawing.Point(15, 89);
             this.rb_Sheet.Name = "rb_Sheet";
             this.rb_Sheet.Size = new System.Drawing.Size(101, 16);
             this.rb_Sheet.TabIndex = 1;
@@ -68,7 +69,7 @@
             // 
             this.rbWindows.AutoSize = true;
             this.rbWindows.Checked = true;
-            this.rbWindows.Location = new System.Drawing.Point(15, 89);
+            this.rbWindows.Location = new System.Drawing.Point(15, 111);
             this.rbWindows.Name = "rbWindows";
             this.rbWindows.Size = new System.Drawing.Size(95, 16);
             this.rbWindows.TabIndex = 5;
@@ -108,12 +109,23 @@
             this.bn_FindTable.UseVisualStyleBackColor = true;
             this.bn_FindTable.Click += new System.EventHandler(this.bn_FindTable_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(15, 50);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(162, 16);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "显示.INCLUDE 等引用结构";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // frWriteTableName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(270, 179);
             this.ControlBox = false;
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.bn_FindTable);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -125,6 +137,7 @@
             this.ShowIcon = false;
             this.Text = "输入要查询结构的表名";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.frWriteTableName_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,5 +152,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button bn_FindTable;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

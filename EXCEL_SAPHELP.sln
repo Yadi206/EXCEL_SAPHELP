@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EXCEL_SAPHELP", "EXCEL_SAPHELP.csproj", "{CA4D7F66-4656-42B0-A058-0F641363D93F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAPTableHelp", "..\SAPTableHelp\SAPTableHelp.csproj", "{CA6CDAF1-F0E5-4631-AE33-29EBECE864ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CA4D7F66-4656-42B0-A058-0F641363D93F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA4D7F66-4656-42B0-A058-0F641363D93F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA4D7F66-4656-42B0-A058-0F641363D93F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA6CDAF1-F0E5-4631-AE33-29EBECE864ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA6CDAF1-F0E5-4631-AE33-29EBECE864ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA6CDAF1-F0E5-4631-AE33-29EBECE864ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA6CDAF1-F0E5-4631-AE33-29EBECE864ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

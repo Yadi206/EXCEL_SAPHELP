@@ -14,6 +14,8 @@ namespace EXCEL_SAPHELP.WinForm
     {
         public string TableName = "";
         public string flag = "";
+        public bool ishaveinclude = false;
+        public string showtype = "Sheet";
         public frWriteTableName()
         {
             InitializeComponent();
@@ -52,6 +54,8 @@ namespace EXCEL_SAPHELP.WinForm
             {
                 flag = "WINDOWS";
             }
+
+            ishaveinclude = checkBox1.Checked;
             this.DialogResult = DialogResult.OK;
         }
 
@@ -65,6 +69,20 @@ namespace EXCEL_SAPHELP.WinForm
             else
             {
                 tb_TableName.Focus();
+            }
+        }
+
+        private void frWriteTableName_Load(object sender, EventArgs e)
+        {
+            if (showtype == "Sheet")
+            {
+                rb_Sheet.Checked = true;
+                rbWindows.Checked = false;
+            }
+            else
+            {
+                rb_Sheet.Checked = false;
+                rbWindows.Checked = true;
             }
         }
     }
