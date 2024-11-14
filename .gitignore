@@ -1,0 +1,13 @@
+.vs/ 
+EXCEL_SAPHELP/.vs/ 
+EXCEL_SAPHELP/packages/
+EXCEL_SAPHELP/obj/
+EXCEL_SAPHELP/bin/
+SAPTableHelp/.vs/ 
+SAPTableHelp/packages/
+SAPTableHelp/obj/
+SAPTableHelp/bin/
+安装打包/运行时/
+安装打包/FABU/
+安装打包/EXCEL_SAPHELP-cache/
+安装打包/Setup Files/

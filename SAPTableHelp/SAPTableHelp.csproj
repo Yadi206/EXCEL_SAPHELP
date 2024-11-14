@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA6CDAF1-F0E5-4631-AE33-29EBECE864ED}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SAPTableHelp</RootNamespace>
+    <AssemblyName>SAPTableHelp</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\EXCEL_SAPHELP\bin\Debug\x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="sapnco, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Windows\Microsoft.NET\assembly\GAC_32\sapnco\v4.0_3.1.0.42__50436dca5c7f7d23\sapnco.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco_utils, Version=3.1.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Windows\Microsoft.NET\assembly\GAC_32\sapnco_utils\v4.0_3.1.0.42__50436dca5c7f7d23\sapnco_utils.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\EXCEL_SAPHELP\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\EXCEL_SAPHELP\packages\System.Data.SQLite.EF6.1.0.118.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\EXCEL_SAPHELP\packages\System.Data.SQLite.Linq.1.0.118.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Com\Ini.cs" />
+    <Compile Include="Com\Model\BianLiang.cs" />
+    <Compile Include="Com\Model\MiMa.cs" />
+    <Compile Include="Com\Model\MiMaHang.cs" />
+    <Compile Include="Com\Model\SapComTable.cs" />
+    <Compile Include="Com\Model\SAPKJFS.cs" />
+    <Compile Include="Com\Model\SAPLJXX.cs" />
+    <Compile Include="Com\Model\SAPLononInfo.cs" />
+    <Compile Include="Com\Model\SapPassword.cs" />
+    <Compile Include="Com\Model\SAPTableInfo\DD08L.cs" />
+    <Compile Include="Com\Model\SAPTableInfo\DD04T.cs" />
+    <Compile Include="Com\Model\SAPTableInfo\DD03VT.cs" />
+    <Compile Include="Com\Model\SAPTableInfo\DD03T.cs" />
+    <Compile Include="Com\Model\SAPTableInfo\DD03L.cs" />
+    <Compile Include="Com\Model\SAPTableInfo\DD02T.cs" />
+    <Compile Include="Com\Model\SAPTableInfo\SapTableInfo.cs" />
+    <Compile Include="Com\Model\SAPUILandscape.cs" />
+    <Compile Include="Com\Model\ShaiXuan.cs" />
+    <Compile Include="Com\Model\sys_t_object.cs" />
+    <Compile Include="Com\Model\sys_t_tablelist.cs" />
+    <Compile Include="Com\Model\Table.cs" />
+    <Compile Include="Com\SQLiteDBHelper.cs" />
+    <Compile Include="Com\SysConfigInfo.cs" />
+    <Compile Include="Com\Win32API.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RunFun\RFCHelp.cs" />
+    <Compile Include="RunFun\RunDD_GET_NAMETAB_FOR_RFC.cs" />
+    <Compile Include="RunFun\RunLTR_MODEL_GET_TABLE_TEXTS.cs" />
+    <Compile Include="RunFun\RunMDG_TR_NAMETAB_GET_RFC.cs" />
+    <Compile Include="RunFun\RunRFC_READ_TABLE.cs" />
+    <Compile Include="RunFun\RunTABLE_GET_TEXTTABLE.cs" />
+    <Compile Include="WinForm\CDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinForm\CWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\CWaitForm.designer.cs">
+      <DependentUpon>CWaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\FindTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\frWriteFunName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\frWriteFunName.Designer.cs">
+      <DependentUpon>frWriteFunName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\frWriteTableName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\frWriteTableName.Designer.cs">
+      <DependentUpon>frWriteTableName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\SetTables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FullTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Saplogon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\WTiaoJianChuangKou.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="WinForm\CWaitForm.resx">
+      <DependentUpon>CWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FindTable.resx">
+      <DependentUpon>FindTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\frWriteFunName.resx">
+      <DependentUpon>frWriteFunName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\frWriteTableName.resx">
+      <DependentUpon>frWriteTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\SetTables.resx">
+      <DependentUpon>SetTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FullTable.resx">
+      <DependentUpon>FullTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Saplogon.resx">
+      <DependentUpon>Saplogon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\WTiaoJianChuangKou.resx">
+      <DependentUpon>WTiaoJianChuangKou.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\EXCEL_SAPHELP\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\EXCEL_SAPHELP\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\EXCEL_SAPHELP\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\EXCEL_SAPHELP\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\EXCEL_SAPHELP\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+</Project>
