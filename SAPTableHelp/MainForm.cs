@@ -679,5 +679,26 @@ namespace SAPTableHelp
                 setBianKuang(ws, istartrow, curcolumn, currow, curcolumn + 6);
             }
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            
+            RfcRun f = new RfcRun();
+            RfcConfigParameters RFCPara = new RfcConfigParameters();
+            f.parms = SysConfigInfo.parms;
+            f.SapRfcDestination = SysConfigInfo.SapRfcDestination;
+            f.SapRfcRepository = SysConfigInfo.SapRfcRepository;
+            //f.parms.Add(RfcConfigParameters.AppServerHost, tbIP.Text.ToString());   //SAP主机IP 
+            //// paras.Add(RfcConfigParameters.SAPRouter,  tbLuYou.Text.ToString());   //SAP主机 路由器
+            //f.parms.Add(RfcConfigParameters.SystemNumber, tbXiTongHao.Text.ToString());  //SAP实例
+            //f.parms.Add(RfcConfigParameters.User, tbDengLuZhangHao.Text.ToString());  //用户名
+            //f.parms.Add(RfcConfigParameters.Password, tbMiMa.Text.ToString());  //密码
+            //f.parms.Add(RfcConfigParameters.Client, tbKeHuDuanHao.Text.ToString());  // Client
+            //f.parms.Add(RfcConfigParameters.Language, tbDengLuYuYan.Text.ToString());  //登陆语言
+            //f.parms.Add(RfcConfigParameters.Name, "HYDRFC");  //登陆语言
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
     }
 }

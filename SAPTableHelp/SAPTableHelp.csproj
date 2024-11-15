@@ -126,6 +126,12 @@
     <Compile Include="WinForm\FindTable.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WinForm\RfcRun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\RfcRun.Designer.cs">
+      <DependentUpon>RfcRun.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\frWriteFunName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,12 @@
     <Compile Include="WinForm\frWriteTableName.Designer.cs">
       <DependentUpon>frWriteTableName.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\LoginConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\LoginConfig.designer.cs">
+      <DependentUpon>LoginConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\SetTables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +159,7 @@
     <Compile Include="WinForm\Saplogon.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WinForm\TextBoxRemind.cs" />
     <Compile Include="WinForm\WTiaoJianChuangKou.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,11 +182,17 @@
     <EmbeddedResource Include="WinForm\FindTable.resx">
       <DependentUpon>FindTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\RfcRun.resx">
+      <DependentUpon>RfcRun.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForm\frWriteFunName.resx">
       <DependentUpon>frWriteFunName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\frWriteTableName.resx">
       <DependentUpon>frWriteTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\LoginConfig.resx">
+      <DependentUpon>LoginConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\SetTables.resx">
       <DependentUpon>SetTables.cs</DependentUpon>
